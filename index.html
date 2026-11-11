@@ -247,6 +247,7 @@
                 <div class="studio-tabs">
                     <button class="studio-tab-btn active" onclick="switchStudioPane('analytics', this)">Analytics</button>
                     <button class="studio-tab-btn" onclick="switchStudioPane('content', this)">Content Manager</button>
+                    <button class="studio-tab-btn" onclick="switchStudioPane('library', this)">Library</button>
                     <button class="studio-tab-btn" onclick="switchStudioPane('monetization', this)">Monetization</button>
                 </div>
                 <div id="pane-analytics" class="studio-pane active">
@@ -267,6 +268,27 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="pane-library" class="studio-pane">
+    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 12px;">Creator Library & Saved Collections</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px;">
+        <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; cursor: pointer;" onclick="alert('Opening Liked Videos...')">
+            <h4 style="font-size: 13px; font-weight: 700; color: #f59e0b; margin-bottom: 4px;">❤️ Liked Videos</h4>
+            <p style="font-size: 12px; color: var(--text-muted);">Videos you've liked across GoldenNest.</p>
+        </div>
+        <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; cursor: pointer;" onclick="alert('Opening Watch Later...')">
+            <h4 style="font-size: 13px; font-weight: 700; color: #f59e0b; margin-bottom: 4px;">⏰ Watch Later</h4>
+            <p style="font-size: 12px; color: var(--text-muted);">Queued long-form and teaser releases.</p>
+        </div>
+        <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; cursor: pointer;" onclick="alert('Opening Downloads...')">
+            <h4 style="font-size: 13px; font-weight: 700; color: #f59e0b; margin-bottom: 4px;">📥 Downloads</h4>
+            <p style="font-size: 12px; color: var(--text-muted);">Offline local view cache.</p>
+        </div>
+        <div style="background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; cursor: pointer;" onclick="alert('Opening Saved Videos...')">
+            <h4 style="font-size: 13px; font-weight: 700; color: #f59e0b; margin-bottom: 4px;">🔖 Saved Collections</h4>
+            <p style="font-size: 12px; color: var(--text-muted);">Bookmarked reels & projects.</p>
+        </div>
+    </div>
+</div>
                 <div id="pane-monetization" class="studio-pane">
                     <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Zero-Commission Payout Hub</h3>
                     <p style="font-size: 12px; color: var(--text-muted);">GoldenNest takes 0% commission. You receive 100% of earnings directly.</p>
