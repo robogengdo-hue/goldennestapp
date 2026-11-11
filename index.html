@@ -44,7 +44,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Category Filter Pills & Trending */
         .category-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
         .pill-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
         .pill-btn.active { background: #f59e0b; color: white; border-color: #f59e0b; }
@@ -59,7 +58,7 @@
         .video-details h3 { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .video-details p { font-size: 12px; color: var(--text-muted); }
         
-        /* Public Watch Page View */
+        /* Public Watch Page */
         #watchView { display: none; max-width: 900px; margin: 0 auto; }
         #watchView.active { display: block; }
         .watch-player { aspect-ratio: 16/9; background: #0f172a; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; margin-bottom: 16px; position: relative; }
@@ -69,12 +68,11 @@
         .comment-input-box button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
         .comment-item { display: flex; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
 
-        /* Immersive Vertical Reels Feed (Instagram Style) */
+        /* Reels Feed */
         .reels-scroll-container { max-width: 380px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
         .reel-card { background: #0f172a; border-radius: 24px; aspect-ratio: 9/16; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .reel-sidebar { position: absolute; right: 16px; bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-        .reel-action-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: transform 0.2s; }
-        .reel-action-btn:hover { transform: scale(1.1); }
+        .reel-action-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; }
 
         /* Studio Dashboard */
         .studio-box { max-width: 950px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
@@ -119,14 +117,22 @@
         .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; font-size: 13px; }
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
 
-        /* Upload Modal */
-        #uploadModal { display: none; position: fixed; inset: 0; background: #0f172a; z-index: 100; flex-direction: column; color: white; padding: 20px; }
+        /* Enhanced YouTube/Instagram Style Upload Modal */
+        #uploadModal { display: none; position: fixed; inset: 0; background: #0f172a; z-index: 100; flex-direction: column; color: white; padding: 20px; overflow-y: auto; }
         #uploadModal.active { display: flex; }
         .yt-upload-header { display: flex; justify-content: space-between; align-items: center; max-width: 600px; width: 100%; margin: 0 auto; padding-bottom: 16px; }
-        .yt-upload-body { flex: 1; max-width: 600px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px dashed #334155; border-radius: 24px; background: #1e293b; padding: 32px; text-align: center; position: relative; cursor: pointer; }
-        .yt-upload-body:hover { border-color: #f59e0b; }
-        .record-ring { width: 72px; height: 72px; border-radius: 50%; border: 4px solid white; display: flex; align-items: center; justify-content: center; margin: 24px auto; cursor: pointer; transition: transform 0.2s; }
-        .record-inner { width: 56px; height: 56px; background: #ef4444; border-radius: 50%; }
+        .yt-upload-body { max-width: 600px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; border: 2px dashed #334155; border-radius: 24px; background: #1e293b; padding: 24px; gap: 16px; }
+        .form-row { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+        .form-row label { font-size: 12px; font-weight: 700; color: #cbd5e1; }
+        .form-row input, .form-row textarea, .form-row select { width: 100%; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; color: white; font-size: 13px; outline: none; }
+        .form-row input:focus, .form-row textarea:focus { border-color: #f59e0b; }
+        .publish-btn { background: #f59e0b; color: white; border: none; padding: 12px; border-radius: 9999px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 8px; }
+        .publish-btn:hover { background: #d97706; }
+
+        /* Sound Library Modal */
+        #soundModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 110; justify-content: center; align-items: center; }
+        #soundModal.active { display: flex; }
+        .sound-box { background: #1e293b; border-radius: 16px; width: 90%; max-width: 400px; padding: 20px; color: white; }
 
         /* Bottom Navbar */
         nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 50; }
@@ -212,7 +218,7 @@
             </div>
         </div>
 
-        <!-- Public Watch Page (YouTube Style) -->
+        <!-- Public Watch Page -->
         <div id="watchView">
             <button onclick="closeWatchPage()" style="background: none; border: none; font-weight: 700; color: #f59e0b; cursor: pointer; margin-bottom: 16px; font-size: 14px;">← Back to Home Feed</button>
             <div class="watch-player">
@@ -221,7 +227,6 @@
             <h2 id="watchTitle" style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">Video Title</h2>
             <p id="watchMeta" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Channel • Views</p>
             
-            <!-- Public Comments Section -->
             <div class="comments-section">
                 <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">Public Comments</h3>
                 <div class="comment-input-box">
@@ -240,7 +245,7 @@
             </div>
         </div>
 
-        <!-- Reels Tab (Instagram Style Endless Vertical Swipe) -->
+        <!-- Reels Tab -->
         <div id="tab-reels" class="tab-content">
             <div class="reels-scroll-container">
                 <div class="reel-card">
@@ -258,25 +263,10 @@
                         <p style="font-size: 12px; color: #e2e8f0;">The unmasking begins. Are you ready for the truth? #TheUnmaskingProject</p>
                     </div>
                 </div>
-                <div class="reel-card" style="background: #1e293b;">
-                    <div class="reel-sidebar">
-                        <button class="reel-action-btn" onclick="alert('Liked reel!')">❤️</button>
-                        <span style="font-size: 12px; font-weight: bold;">28.5K</span>
-                        <button class="reel-action-btn" onclick="alert('Opening comments drawer...')">💬</button>
-                        <span style="font-size: 12px; font-weight: bold;">512</span>
-                    </div>
-                    <div style="position: relative; z-index: 10;">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                            <div style="width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">GN</div>
-                            <span style="font-weight: 700; font-size: 14px;">@goldennest_official</span>
-                        </div>
-                        <p style="font-size: 12px; color: #e2e8f0;">Zero commission creator payouts in action! Instant withdrawals. 🚀 #GoldenNest</p>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <!-- G-Chat Tab (Mutual Messaging) -->
+        <!-- G-Chat Tab -->
         <div id="tab-chat" class="tab-content">
             <div class="chat-container">
                 <div class="chat-sidebar">
@@ -421,19 +411,61 @@
         </div>
     </main>
 
-    <!-- Upload Modal -->
+    <!-- Enhanced YouTube/Instagram Style Upload Modal -->
     <div id="uploadModal">
         <div class="yt-upload-header">
-            <button onclick="closeUploadModal()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">✕</button>
-            <span style="font-size: 14px; font-weight: 700; color: #f59e0b;">🎵 Add sound</span>
-            <span style="font-size: 20px; cursor: pointer;" onclick="alert('Studio camera settings flipped!')">✨</span>
+            <button onclick="closeUploadModal()" style="background: none; border: none; color: white; font-size: 22px; cursor: pointer;">✕</button>
+            <span onclick="openSoundModal()" style="font-size: 13px; font-weight: 700; color: #f59e0b; cursor: pointer;">🎵 Add Sound</span>
+            <span style="font-size: 18px; cursor: pointer;" onclick="alert('Camera settings flipped!')">✨</span>
         </div>
-        <div class="yt-upload-body" onclick="document.getElementById('modalFileInput').click()">
-            <input type="file" id="modalFileInput" style="display: none;" accept="video/*" onchange="handleModalFileSelected(this)">
-            <p style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">Tap to pick or record video</p>
-            <p style="font-size: 12px; color: #94a3b8;">Supports Shorts, Reels, Long-form</p>
-            <div class="record-ring">
-                <div class="record-inner"></div>
+        <div class="yt-upload-body">
+            <div style="border: 2px dashed #475569; padding: 20px; border-radius: 16px; text-align: center; cursor: pointer;" onclick="document.getElementById('modalFileInput').click()">
+                <input type="file" id="modalFileInput" style="display: none;" accept="video/*" onchange="handleModalFileSelected(this)">
+                <p id="uploadFileLabel" style="font-size: 14px; font-weight: 700;">Tap to select video file</p>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Supports Shorts, Reels, Long-form</p>
+            </div>
+            
+            <div class="form-row">
+                <label>Video Title</label>
+                <input type="text" id="uploadTitleInput" placeholder="Enter video title...">
+            </div>
+            <div class="form-row">
+                <label>Description & Hashtags</label>
+                <textarea id="uploadDescInput" rows="2" placeholder="Tell viewers about your video (#TheUnmaskingProject)..."></textarea>
+            </div>
+            <div class="form-row">
+                <label>Target Language / Region</label>
+                <select id="uploadLangSelect">
+                    <option>Malayalam</option>
+                    <option>Kannada</option>
+                    <option>Tamil</option>
+                    <option>Telugu</option>
+                    <option>Hindi</option>
+                    <option>English</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label>Visibility</label>
+                <select id="uploadVisibilitySelect">
+                    <option>Public</option>
+                    <option>Unlisted</option>
+                    <option>Private</option>
+                    <option>Draft</option>
+                </select>
+            </div>
+
+            <button class="publish-btn" onclick="publishUploadMetadata()">Publish to GoldenNest (0% Commission)</button>
+        </div>
+    </div>
+
+    <!-- Sound Library Modal -->
+    <div id="soundModal" onclick="closeSoundModal()">
+        <div class="sound-box" onclick="event.stopPropagation()">
+            <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 12px;">Select Audio Track</h3>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="padding: 10px; background: #0f172a; border-radius: 8px; cursor: pointer;" onclick="selectSound('Mr. Psycho Dark Thriller Theme')">🎵 Mr. Psycho Dark Thriller Theme</div>
+                <div style="padding: 10px; background: #0f172a; border-radius: 8px; cursor: pointer;" onclick="selectSound('GoldenNest Electronic Groove')">🎵 GoldenNest Electronic Groove</div>
+                <div style="padding: 10px; background: #0f172a; border-radius: 8px; cursor: pointer;" onclick="selectSound('Robogen Synthwave Beat')">🎵 Robogen Synthwave Beat</div>
             </div>
         </div>
     </div>
@@ -561,24 +593,50 @@
             document.getElementById('uploadModal').classList.remove('active');
         }
 
+        function openSoundModal() {
+            document.getElementById('soundModal').classList.add('active');
+        }
+
+        function closeSoundModal() {
+            document.getElementById('soundModal').classList.remove('active');
+        }
+
+        function selectSound(trackName) {
+            alert("Audio track attached: " + trackName);
+            closeSoundModal();
+        }
+
         function handleModalFileSelected(input) {
             if (input.files && input.files[0]) {
-                const fileName = input.files[0].name;
-                alert("Success! '" + fileName + "' uploaded with 0% commission!");
-                
-                const tbody = document.getElementById('contentTableBody');
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${fileName}</td>
-                        <td><span style="color: #059669; font-weight: 700;">Public</span></td>
-                        <td>1 view</td>
-                        <td>0</td>
-                    </tr>
-                `;
-                closeUploadModal();
-                switchTab('studio');
-                switchStudioPane('content', document.querySelectorAll('.studio-tab-btn')[1]);
+                document.getElementById('uploadFileLabel').innerText = "Selected: " + input.files[0].name;
+                document.getElementById('uploadTitleInput').value = input.files[0].name.replace(/\.[^/.]+$/, "");
             }
+        }
+
+        function publishUploadMetadata() {
+            const title = document.getElementById('uploadTitleInput').value.trim();
+            const visibility = document.getElementById('uploadVisibilitySelect').value;
+            const lang = document.getElementById('uploadLangSelect').value;
+
+            if(!title) {
+                alert("Please enter a video title!");
+                return;
+            }
+
+            alert("Success! '" + title + "' (" + lang + ") published with visibility: " + visibility + "!");
+            
+            const tbody = document.getElementById('contentTableBody');
+            tbody.innerHTML += `
+                <tr>
+                    <td>${title} [${lang}]</td>
+                    <td><span style="color: #059669; font-weight: 700;">${visibility}</span></td>
+                    <td>0 views</td>
+                    <td>0</td>
+                </tr>
+            `;
+            closeUploadModal();
+            switchTab('studio');
+            switchStudioPane('content', document.querySelectorAll('.studio-tab-btn')[1]);
         }
 
         function performSearch() {
