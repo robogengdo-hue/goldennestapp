@@ -14,7 +14,7 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border-color: #e2e8f0;
-            --nav-bg: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
         .dark-mode {
             --bg-main: #0f172a;
@@ -22,9 +22,9 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #334155;
-            --nav-bg: #0f172a;
+            --nav-bg: rgba(15, 23, 42, 0.95);
         }
-        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 80px; }
+        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
         header { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-color); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
         .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; flex-shrink: 0; }
@@ -40,7 +40,7 @@
         .header-actions { display: flex; align-items: center; gap: 10px; }
         .icon-btn { background: var(--bg-card); border: 1px solid var(--border-color); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; position: relative; }
 
-        main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px; }
+        main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px 96px 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
@@ -117,20 +117,25 @@
         .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; font-size: 13px; }
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
 
-        /* YouTube Studio Style Upload Modal */
-        #uploadModal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 100; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+        /* Enhanced YouTube/Instagram Style Upload Modal */
+        #uploadModal { display: none; position: fixed; inset: 0; background: #0f172a; z-index: 100; flex-direction: column; color: white; padding: 20px; overflow-y: auto; }
         #uploadModal.active { display: flex; }
-        .yt-studio-upload-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; width: 100%; max-width: 640px; padding: 24px; color: var(--text-main); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); }
-        .yt-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px; }
-        .form-group-yt { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
-        .form-group-yt label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-        .form-group-yt input, .form-group-yt textarea, .form-group-yt select { width: 100%; padding: 12px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 14px; outline: none; }
-        .form-group-yt input:focus, .form-group-yt textarea:focus { border-color: #f59e0b; }
-        .yt-submit-btn { background: #f59e0b; color: white; border: none; padding: 12px 24px; border-radius: 9999px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; font-size: 14px; }
-        .yt-submit-btn:hover { background: #d97706; }
+        .yt-upload-header { display: flex; justify-content: space-between; align-items: center; max-width: 600px; width: 100%; margin: 0 auto; padding-bottom: 16px; }
+        .yt-upload-body { max-width: 600px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; border: 2px dashed #334155; border-radius: 24px; background: #1e293b; padding: 24px; gap: 16px; }
+        .form-row { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+        .form-row label { font-size: 12px; font-weight: 700; color: #cbd5e1; }
+        .form-row input, .form-row textarea, .form-row select { width: 100%; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; color: white; font-size: 13px; outline: none; }
+        .form-row input:focus, .form-row textarea:focus { border-color: #f59e0b; }
+        .publish-btn { background: #f59e0b; color: white; border: none; padding: 12px; border-radius: 9999px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 8px; }
+        .publish-btn:hover { background: #d97706; }
 
-        /* Bottom Navbar - Guaranteed Visible & Fixed */
-        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 999; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
+        /* Sound Library Modal */
+        #soundModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 110; justify-content: center; align-items: center; }
+        #soundModal.active { display: flex; }
+        .sound-box { background: #1e293b; border-radius: 16px; width: 90%; max-width: 400px; padding: 20px; color: white; }
+
+        /* Bottom Navbar */
+        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 50; }
         .nav-inner { max-width: 520px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-around; }
         .nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; color: var(--text-muted); font-size: 11px; font-weight: 700; }
         .nav-btn.active { color: #d97706; }
@@ -214,7 +219,7 @@
         </div>
 
         <!-- Public Watch Page -->
-        <div id="watchView" class="tab-content">
+        <div id="watchView">
             <button onclick="closeWatchPage()" style="background: none; border: none; font-weight: 700; color: #f59e0b; cursor: pointer; margin-bottom: 16px; font-size: 14px;">← Back to Home Feed</button>
             <div class="watch-player">
                 <span id="watchPlayerTitle">Playing Video...</span>
@@ -242,6 +247,4 @@
 
         <!-- Reels Tab -->
         <div id="tab-reels" class="tab-content">
-            <div class="reels-scroll-container">
-                <div class="reel-card">
-                    <div class="reel-sidebar">
+            <div class="reels-scroll-contain
