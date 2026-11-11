@@ -44,6 +44,7 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
+        /* Category Filter Pills & Trending */
         .category-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
         .pill-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
         .pill-btn.active { background: #f59e0b; color: white; border-color: #f59e0b; }
@@ -58,7 +59,7 @@
         .video-details h3 { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .video-details p { font-size: 12px; color: var(--text-muted); }
         
-        /* Public Watch Page */
+        /* Public Watch Page View */
         #watchView { display: none; max-width: 900px; margin: 0 auto; }
         #watchView.active { display: block; }
         .watch-player { aspect-ratio: 16/9; background: #0f172a; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; margin-bottom: 16px; position: relative; }
@@ -68,11 +69,12 @@
         .comment-input-box button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
         .comment-item { display: flex; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
 
-        /* Reels Feed */
+        /* Immersive Vertical Reels Feed (Instagram Style) */
         .reels-scroll-container { max-width: 380px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
         .reel-card { background: #0f172a; border-radius: 24px; aspect-ratio: 9/16; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
         .reel-sidebar { position: absolute; right: 16px; bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-        .reel-action-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; }
+        .reel-action-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: transform 0.2s; }
+        .reel-action-btn:hover { transform: scale(1.1); }
 
         /* Studio Dashboard */
         .studio-box { max-width: 950px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
@@ -117,22 +119,14 @@
         .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; font-size: 13px; }
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
 
-        /* Enhanced YouTube/Instagram Style Upload Modal */
-        #uploadModal { display: none; position: fixed; inset: 0; background: #0f172a; z-index: 100; flex-direction: column; color: white; padding: 20px; overflow-y: auto; }
+        /* Upload Modal */
+        #uploadModal { display: none; position: fixed; inset: 0; background: #0f172a; z-index: 100; flex-direction: column; color: white; padding: 20px; }
         #uploadModal.active { display: flex; }
         .yt-upload-header { display: flex; justify-content: space-between; align-items: center; max-width: 600px; width: 100%; margin: 0 auto; padding-bottom: 16px; }
-        .yt-upload-body { max-width: 600px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; border: 2px dashed #334155; border-radius: 24px; background: #1e293b; padding: 24px; gap: 16px; }
-        .form-row { display: flex; flex-direction: column; gap: 6px; text-align: left; }
-        .form-row label { font-size: 12px; font-weight: 700; color: #cbd5e1; }
-        .form-row input, .form-row textarea, .form-row select { width: 100%; padding: 10px 14px; background: #0f172a; border: 1px solid #334155; border-radius: 10px; color: white; font-size: 13px; outline: none; }
-        .form-row input:focus, .form-row textarea:focus { border-color: #f59e0b; }
-        .publish-btn { background: #f59e0b; color: white; border: none; padding: 12px; border-radius: 9999px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 8px; }
-        .publish-btn:hover { background: #d97706; }
-
-        /* Sound Library Modal */
-        #soundModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 110; justify-content: center; align-items: center; }
-        #soundModal.active { display: flex; }
-        .sound-box { background: #1e293b; border-radius: 16px; width: 90%; max-width: 400px; padding: 20px; color: white; }
+        .yt-upload-body { flex: 1; max-width: 600px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px dashed #334155; border-radius: 24px; background: #1e293b; padding: 32px; text-align: center; position: relative; cursor: pointer; }
+        .yt-upload-body:hover { border-color: #f59e0b; }
+        .record-ring { width: 72px; height: 72px; border-radius: 50%; border: 4px solid white; display: flex; align-items: center; justify-content: center; margin: 24px auto; cursor: pointer; transition: transform 0.2s; }
+        .record-inner { width: 56px; height: 56px; background: #ef4444; border-radius: 50%; }
 
         /* Bottom Navbar */
         nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 50; }
@@ -218,7 +212,7 @@
             </div>
         </div>
 
-        <!-- Public Watch Page -->
+        <!-- Public Watch Page (YouTube Style) -->
         <div id="watchView">
             <button onclick="closeWatchPage()" style="background: none; border: none; font-weight: 700; color: #f59e0b; cursor: pointer; margin-bottom: 16px; font-size: 14px;">← Back to Home Feed</button>
             <div class="watch-player">
@@ -227,6 +221,7 @@
             <h2 id="watchTitle" style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">Video Title</h2>
             <p id="watchMeta" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Channel • Views</p>
             
+            <!-- Public Comments Section -->
             <div class="comments-section">
                 <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">Public Comments</h3>
                 <div class="comment-input-box">
@@ -245,6 +240,11 @@
             </div>
         </div>
 
-        <!-- Reels Tab -->
+        <!-- Reels Tab (Instagram Style Endless Vertical Swipe) -->
         <div id="tab-reels" class="tab-content">
-            <div class="reels-scroll-contain
+            <div class="reels-scroll-container">
+                <div class="reel-card">
+                    <div class="reel-sidebar">
+                        <button class="reel-action-btn" onclick="alert('Liked reel!')">❤️</button>
+                        <span style="font-size: 12px; font-weight: bold;">14.2K</span>
+                        <button class="reel-action-btn" onclick="alert('Open
