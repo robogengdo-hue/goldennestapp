@@ -75,7 +75,7 @@
         .chat-input-area { padding: 12px 16px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; background: var(--bg-card); }
         .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; }
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
-        /* Upload modal hidden by default */
+        
         #uploadModal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 100; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
         #uploadModal.active { display: flex; }
         
@@ -223,7 +223,7 @@
                     <div class="chat-messages" id="chatMessages">
                         <div class="message received">"Let's sync up on the teaser release schedule for The Unmasking Project."</div>
                         <div class="message sent">"Ready when you are. Zero-commission distribution is locked in."</div>
-                    </div>
+                        </div>
                     <div class="chat-input-area">
                         <input type="text" id="chatInput" placeholder="Type a secure mutual message...">
                         <button onclick="sendMessage()">Send</button>
@@ -276,8 +276,7 @@
                 </div>
             </div>
         </div>
-    </main>
-    <div id="uploadModal">
+    </main><div id="uploadModal">
         <div class="yt-studio-upload-box">
             <div class="yt-modal-header">
                 <h3 style="font-size: 16px; font-weight: 800;">Upload videos to GoldenNest</h3>
@@ -295,27 +294,14 @@
                 <label>Description</label>
                 <textarea id="uploadDescInput" rows="2" placeholder="Description..."></textarea>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                <div class="form-group-yt">
-                    <label>Language / Region</label>
-                    <select id="uploadLangSelect">
-                        <option>Malayalam</option>
-                        <option>Kannada</option>
-                        <option>Tamil</option>
-                        <option>Telugu</option>
-                        <option>Hindi</option>
-                        <option>English</option>
-                    </select>
-                </div>
-                <div class="form-group-yt">
-                    <label>Visibility</label>
-                    <select id="uploadVisibilitySelect">
-                        <option>Public</option>
-                        <option>Unlisted</option>
-                        <option>Private</option>
-                        <option>Draft</option>
-                    </select>
-                </div>
+            <div class="form-group-yt">
+                <label>Visibility</label>
+                <select id="uploadVisibilitySelect">
+                    <option>Public</option>
+                    <option>Unlisted</option>
+                    <option>Private</option>
+                    <option>Draft</option>
+                </select>
             </div>
             <button class="yt-submit-btn" onclick="publishUploadMetadata()">Upload & Publish</button>
         </div>
@@ -405,10 +391,9 @@
         function publishUploadMetadata() {
             const title = document.getElementById('uploadTitleInput').value.trim();
             const visibility = document.getElementById('uploadVisibilitySelect').value;
-            const lang = document.getElementById('uploadLangSelect').value;
             if(!title) { alert("Please enter a title!"); return; }
-            alert("Success! '" + title + "' (" + lang + ") published with visibility: " + visibility + "!");
-            document.getElementById('contentTableBody').innerHTML += `<tr><td>${title} [${lang}]</td><td><span style="color: #059669; font-weight: 700;">${visibility}</span></td><td>0 views</td><td>0</td></tr>`;
+            alert("Success! '" + title + "' published with visibility: " + visibility + "!");
+            document.getElementById('contentTableBody').innerHTML += `<tr><td>${title}</td><td><span style="color: #059669; font-weight: 700;">${visibility}</span></td><td>0 views</td><td>0</td></tr>`;
             closeUploadModal();
             switchTab('studio');
             switchStudioPane('content', document.querySelectorAll('.studio-tab-btn')[1]);
