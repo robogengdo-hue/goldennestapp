@@ -308,7 +308,7 @@
         <div class="nav-inner">
             <button class="nav-btn active" onclick="switchTab('home', event)" data-tab="home"><span>🏠</span> Home</button>
             <button class="nav-btn" onclick="switchTab('reels', event)" data-tab="reels"><span>⚡</span> Reels</button>
-            <button class="nav-upload-center" onclick="openUploadModal()">+</button>
+            <button class="nav-upload-center" onclick="event.preventDefault(); openUploadModal();">+</button>
             <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat"><span>💬</span> G-Chat</button>
             <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio"><span>👤</span> Studio</button>
         </div>
