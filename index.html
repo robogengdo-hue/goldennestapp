@@ -23,6 +23,12 @@
         main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px 96px 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+
+        /* Category Filter Pills */
+        .category-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
+        .pill-btn { background: #f1f5f9; border: none; padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: #64748b; cursor: pointer; white-space: nowrap; }
+        .pill-btn.active { background: #0f172a; color: white; }
+
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
         .video-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .thumbnail { position: relative; aspect-ratio: 16/9; background: #0f172a; display: flex; align-items: center; justify-content: center; }
@@ -38,22 +44,18 @@
         .account-info { display: flex; align-items: center; gap: 12px; }
         .account-avatar { width: 48px; height: 48px; border-radius: 50%; background: #f59e0b; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         
-        /* Studio Sub-Tabs */
         .studio-tabs { display: flex; gap: 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 20px; }
         .studio-tab-btn { background: #f1f5f9; border: none; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; color: #64748b; cursor: pointer; }
         .studio-tab-btn.active { background: #f59e0b; color: white; }
-
         .studio-pane { display: none; }
         .studio-pane.active { display: block; }
 
-        /* Analytics Grid */
         .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
         .metric-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; }
         .metric-card h5 { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 6px; }
         .metric-card .value { font-size: 20px; font-weight: 800; color: #0f172a; }
         .metric-card .trend { font-size: 11px; color: #059669; font-weight: 700; margin-top: 4px; }
 
-        /* Content Table */
         .content-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
         .content-table th { text-align: left; font-size: 11px; text-transform: uppercase; color: #64748b; padding: 10px; border-bottom: 1px solid #e2e8f0; }
         .content-table td { padding: 12px 10px; font-size: 13px; border-bottom: 1px solid #f1f5f9; color: #334155; }
@@ -64,6 +66,20 @@
         .tile-icon { width: 36px; height: 36px; border-radius: 10px; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; }
         .tile-info h4 { font-size: 13px; font-weight: 700; color: #0f172a; }
         .tile-info p { font-size: 11px; color: #64748b; }
+
+        /* G-Chat Messaging Interface */
+        .chat-container { display: grid; grid-template-columns: 280px 1fr; background: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .chat-sidebar { border-right: 1px solid #e2e8f0; background: #f8fafc; overflow-y: auto; }
+        .chat-contact { padding: 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; display: flex; gap: 12px; align-items: center; transition: background 0.2s; }
+        .chat-contact:hover, .chat-contact.active { background: #fffdf4; }
+        .chat-pane { display: flex; flex-direction: column; height: 100%; }
+        .chat-messages { flex: 1; padding: 16px; overflow-y: auto; background: #fafafa; display: flex; flex-direction: column; gap: 12px; }
+        .message { max-width: 70%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.4; }
+        .message.received { background: white; border: 1px solid #e2e8f0; align-self: flex-start; color: #0f172a; }
+        .message.sent { background: #f59e0b; color: white; align-self: flex-end; }
+        .chat-input-area { padding: 12px 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; background: white; }
+        .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 9999px; outline: none; font-size: 13px; }
+        .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
 
         /* Upload Modal */
         #uploadModal { display: none; position: fixed; inset: 0; background: #0f172a; z-index: 100; flex-direction: column; color: white; padding: 20px; }
@@ -112,8 +128,17 @@
     <main>
         <!-- Home Tab -->
         <div id="tab-home" class="tab-content active">
-            <div class="video-grid">
-                <div class="video-card">
+            <!-- Category Filter Pills -->
+            <div class="category-pills">
+                <button class="pill-btn active" onclick="filterCategory('all', this)">All Feeds</button>
+                <button class="pill-btn" onclick="filterCategory('podcasts', this)">Podcasts</button>
+                <button class="pill-btn" onclick="filterCategory('cinematic', this)">Cinematic / Mr. Psycho</button>
+                <button class="pill-btn" onclick="filterCategory('vlogs', this)">Vlogs</button>
+                <button class="pill-btn" onclick="filterCategory('tech', this)">Tech & AI</button>
+            </div>
+
+            <div class="video-grid" id="homeVideoGrid">
+                <div class="video-card" data-category="tech">
                     <div class="thumbnail">
                         <button class="play-btn" onclick="alert('Playing long-form video stream...')">▶</button>
                     </div>
@@ -125,19 +150,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" data-category="cinematic">
                     <div class="thumbnail">
                         <button class="play-btn" onclick="alert('Playing long-form video stream...')">▶</button>
                     </div>
                     <div class="video-info">
-                        <div class="avatar">MP</div>
+                        <div class="avatar" style="background: #1e293b; color: #f59e0b;">MP</div>
                         <div class="video-details">
-                            <h3>Inside The Unmasking Project: Cinematic Teasers</h3>
+                            <h3>Inside The Unmasking Project: Cinematic Teasers & Mr. Psycho</h3>
                             <p>Mr. Psycho • 45.1K views</p>
                         </div>
                     </div>
                 </div>
-                <div class="video-card">
+                <div class="video-card" data-category="tech">
                     <div class="thumbnail">
                         <button class="play-btn" onclick="alert('Playing long-form video stream...')">▶</button>
                     </div>
@@ -163,30 +188,51 @@
                 </div>
                 <div style="position: relative; z-index: 10;">
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">GN</div>
-                        <span style="font-weight: 700; font-size: 14px;">@goldennest_official</span>
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #1e293b; color: #f59e0b; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">MP</div>
+                        <span style="font-weight: 700; font-size: 14px;">@mr_psycho_official</span>
                     </div>
-                    <p style="font-size: 12px; color: #e2e8f0;">Sneak peek into G-Nest creator payouts & mutual messaging! 🚀 #GoldenNest</p>
+                    <p style="font-size: 12px; color: #e2e8f0;">The unmasking begins. Are you ready for the truth? #TheUnmaskingProject</p>
                 </div>
             </div>
         </div>
 
-        <!-- G-Chat Tab -->
+        <!-- G-Chat Tab (Mutual Messaging) -->
         <div id="tab-chat" class="tab-content">
-            <div class="studio-box">
-                <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 4px;">G-Chat Hub</h2>
-                <p style="font-size: 12px; color: #64748b; margin-bottom: 16px;">Secure messaging unlocked exclusively for mutual followers.</p>
-                <div style="background: #f8fafc; padding: 12px; border-radius: 12px; cursor: pointer;" onclick="alert('Opening chat with Mr. Psycho...')">
-                    <h4 style="font-size: 14px; font-weight: 700;">Mr. Psycho (The Unmasking Project)</h4>
-                    <p style="font-size: 12px; color: #64748b; margin-top: 4px;">"Let's sync up on the teaser release schedule..."</p>
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <div style="padding: 16px; border-bottom: 1px solid #e2e8f0; font-weight: 800; font-size: 14px;">G-Chat (Mutual Only)</div>
+                    <div class="chat-contact active" onclick="selectChat('Mr. Psycho')">
+                        <div class="avatar" style="background: #1e293b; color: #f59e0b; width: 36px; height: 36px; font-size: 12px;">MP</div>
+                        <div>
+                            <h4 style="font-size: 13px; font-weight: 700;">Mr. Psycho</h4>
+                            <p style="font-size: 11px; color: #64748b;">Let's sync up on the teaser...</p>
+                        </div>
+                    </div>
+                    <div class="chat-contact" onclick="selectChat('Robogen Team')">
+                        <div class="avatar" style="width: 36px; height: 36px; font-size: 12px;">RG</div>
+                        <div>
+                            <h4 style="font-size: 13px; font-weight: 700;">Robogen Team</h4>
+                            <p style="font-size: 11px; color: #64748b;">Humanoid robot event ready.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-pane">
+                    <div style="padding: 16px; border-bottom: 1px solid #e2e8f0; font-weight: 700; font-size: 14px;" id="activeChatTitle">Chat with Mr. Psycho</div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message received">"Let's sync up on the teaser release schedule for The Unmasking Project."</div>
+                        <div class="message sent">"Ready when you are. Zero-commission distribution is locked in."</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Type a secure mutual message...">
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Studio & Fully Functional Dashboard Tab -->
+        <!-- Studio & Dashboard Tab -->
         <div id="tab-studio" class="tab-content">
             <div class="studio-box">
-                <!-- Creator Account Profile -->
                 <div class="account-card">
                     <div class="account-info">
                         <div class="account-avatar">N</div>
@@ -201,14 +247,12 @@
                     </div>
                 </div>
 
-                <!-- Studio Interactive Sub-Tabs -->
                 <div class="studio-tabs">
                     <button class="studio-tab-btn active" onclick="switchStudioPane('analytics', this)">Analytics</button>
                     <button class="studio-tab-btn" onclick="switchStudioPane('content', this)">Content Manager</button>
                     <button class="studio-tab-btn" onclick="switchStudioPane('monetization', this)">Monetization</button>
                 </div>
 
-                <!-- Pane 1: Analytics -->
                 <div id="pane-analytics" class="studio-pane active">
                     <div class="analytics-grid">
                         <div class="metric-card">
@@ -221,193 +265,4 @@
                             <div class="value">1,420 hrs</div>
                             <div class="trend">↑ +12.4% this week</div>
                         </div>
-                        <div class="metric-card">
-                            <h5>Subscribers</h5>
-                            <div class="value">8,450</div>
-                            <div class="trend">↑ +340 new subs</div>
-                        </div>
-                        <div class="metric-card">
-                            <h5>Est. Zero-Commission Payout</h5>
-                            <div class="value">₹48,200</div>
-                            <div class="trend">100% Creator Share</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pane 2: Content Manager -->
-                <div id="pane-content" class="studio-pane">
-                    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Channel Content</h3>
-                    <table class="content-table">
-                        <thead>
-                            <tr>
-                                <th>Video Title</th>
-                                <th>Visibility</th>
-                                <th>Views</th>
-                                <th>Comments</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Building GoldenNest: The Zero-Commission Creator Economy</td>
-                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
-                                <td>12.4K</td>
-                                <td>142</td>
-                            </tr>
-                            <tr>
-                                <td>Inside The Unmasking Project: Cinematic Teasers</td>
-                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
-                                <td>45.1K</td>
-                                <td>384</td>
-                            </tr>
-                            <tr>
-                                <td>Robogen Robotics Workshop: Humanoid AI</td>
-                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
-                                <td>8.9K</td>
-                                <td>96</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pane 3: Monetization -->
-                <div id="pane-monetization" class="studio-pane">
-                    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Zero-Commission Payout Hub</h3>
-                    <p style="font-size: 12px; color: #64748b; margin-bottom: 16px;">GoldenNest takes 0% commission. You receive 100% of your earnings directly into your connected gateway.</p>
-                    <div style="background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <h4 style="font-size: 13px; font-weight: 700;">Connected Gateway (PayPal / Bank)</h4>
-                            <p style="font-size: 11px; color: #64748b;">Status: Verified & Active</p>
-                        </div>
-                        <button onclick="alert('Payout settings updated!')" style="background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer;">Manage</button>
-                    </div>
-                </div>
-
-                <!-- Library & Activity Tiles -->
-                <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 24px; margin-bottom: 12px;">Your Library & Activity</h3>
-                <div class="account-sections">
-                    <div class="section-tile" onclick="alert('Opening Liked Videos...')">
-                        <div class="tile-icon">❤️</div>
-                        <div class="tile-info">
-                            <h4>Liked Videos</h4>
-                            <p>384 videos</p>
-                        </div>
-                    </div>
-                    <div class="section-tile" onclick="alert('Opening Saved Videos...')">
-                        <div class="tile-icon">📌</div>
-                        <div class="tile-info">
-                            <h4>Saved Videos</h4>
-                            <p>42 playlists</p>
-                        </div>
-                    </div>
-                    <div class="section-tile" onclick="alert('Opening Watch Later...')">
-                        <div class="tile-icon">⏰</div>
-                        <div class="tile-info">
-                            <h4>Watch Later</h4>
-                            <p>12 videos queued</p>
-                        </div>
-                    </div>
-                    <div class="section-tile" onclick="alert('Opening Downloads...')">
-                        <div class="tile-icon">📥</div>
-                        <div class="tile-info">
-                            <h4>Downloads</h4>
-                            <p>8 available offline</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- YouTube-Style Upload Modal Overlay -->
-    <div id="uploadModal">
-        <div class="yt-upload-header">
-            <button onclick="closeUploadModal()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">✕</button>
-            <span style="font-size: 14px; font-weight: 700; color: #f59e0b;">🎵 Add sound</span>
-            <span style="font-size: 20px; cursor: pointer;" onclick="alert('Studio camera settings flipped!')">✨</span>
-        </div>
-        <div class="yt-upload-body" onclick="document.getElementById('modalFileInput').click()">
-            <input type="file" id="modalFileInput" style="display: none;" accept="video/*" onchange="handleModalFileSelected(this)">
-            <p style="font-size: 16px; font-weight: 700; margin-bottom: 8px;" id="modalUploadPrompt">Tap to pick or record video</p>
-            <p style="font-size: 12px; color: #94a3b8;">Supports Shorts, Reels, Long-form</p>
-            <div class="record-ring">
-                <div class="record-inner"></div>
-            </div>
-        </div>
-        <div style="max-width: 600px; width: 100%; margin: 16px auto; display: flex; justify-content: space-around; font-size: 13px; font-weight: 700; color: #94a3b8;">
-            <span style="color: white; border-bottom: 2px solid #f59e0b; padding-bottom: 4px;">Short</span>
-            <span onclick="alert('Switching to Standard Video mode')" style="cursor: pointer;">Video</span>
-            <span onclick="alert('Switching to Live mode')" style="cursor: pointer;">Live</span>
-            <span onclick="alert('Switching to Post mode')" style="cursor: pointer;">Post</span>
-        </div>
-    </div>
-
-    <!-- Bottom Navbar -->
-    <nav>
-        <div class="nav-inner">
-            <button class="nav-btn active" onclick="switchTab('home', event)" data-tab="home">
-                <span>🏠</span> Home
-            </button>
-            <button class="nav-btn" onclick="switchTab('reels', event)" data-tab="reels">
-                <span>⚡</span> Reels
-            </button>
-            <button class="nav-upload-center" onclick="openUploadModal()" title="Creator Upload">
-                +
-            </button>
-            <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat">
-                <span>💬</span> G-Chat
-            </button>
-            <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio">
-                <span>👤</span> Studio
-            </button>
-        </div>
-    </nav>
-
-    <script>
-        function switchTab(tabId, event) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            const targetBtn = document.querySelector(`[data-tab="${tabId}"]`);
-            if(targetBtn) targetBtn.classList.add('active');
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function switchStudioPane(paneId, btn) {
-            document.querySelectorAll('.studio-pane').forEach(el => el.classList.remove('active'));
-            document.getElementById('pane-' + paneId).classList.add('active');
-
-            document.querySelectorAll('.studio-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        function openUploadModal() {
-            document.getElementById('uploadModal').classList.add('active');
-        }
-
-        function closeUploadModal() {
-            document.getElementById('uploadModal').classList.remove('active');
-        }
-
-        function handleModalFileSelected(input) {
-            if (input.files && input.files[0]) {
-                alert("Success! Selected file '" + input.files[0].name + "' uploaded with 0% commission!");
-                closeUploadModal();
-            }
-        }
-
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) {
-                alert("Searching GoldenNest for: '" + query + "'");
-            } else {
-                alert("Please enter a search keyword!");
-            }
-        }
-    </script>
-</body>
-</html>
+                        <div class="metric-c
