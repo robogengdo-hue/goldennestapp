@@ -128,7 +128,6 @@
     <main>
         <!-- Home Tab -->
         <div id="tab-home" class="tab-content active">
-            <!-- Category Filter Pills -->
             <div class="category-pills">
                 <button class="pill-btn active" onclick="filterCategory('all', this)">All Feeds</button>
                 <button class="pill-btn" onclick="filterCategory('podcasts', this)">Podcasts</button>
@@ -265,4 +264,188 @@
                             <div class="value">1,420 hrs</div>
                             <div class="trend">↑ +12.4% this week</div>
                         </div>
-                        <div class="metric-c
+                        <div class="metric-card">
+                            <h5>Subscribers</h5>
+                            <div class="value">8,450</div>
+                            <div class="trend">↑ +340 new subs</div>
+                        </div>
+                        <div class="metric-card">
+                            <h5>Est. Zero-Commission Payout</h5>
+                            <div class="value">₹48,200</div>
+                            <div class="trend">100% Creator Share</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pane-content" class="studio-pane">
+                    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Channel Content</h3>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Video Title</th>
+                                <th>Visibility</th>
+                                <th>Views</th>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Building GoldenNest: The Zero-Commission Creator Economy</td>
+                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
+                                <td>12.4K</td>
+                                <td>142</td>
+                            </tr>
+                            <tr>
+                                <td>Inside The Unmasking Project: Cinematic Teasers</td>
+                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
+                                <td>45.1K</td>
+                                <td>384</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="pane-monetization" class="studio-pane">
+                    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Zero-Commission Payout Hub</h3>
+                    <p style="font-size: 12px; color: #64748b; margin-bottom: 16px;">GoldenNest takes 0% commission. You receive 100% of your earnings directly.</p>
+                    <div style="background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="font-size: 13px; font-weight: 700;">Connected Gateway</h4>
+                            <p style="font-size: 11px; color: #64748b;">Status: Verified & Active</p>
+                        </div>
+                        <button onclick="alert('Gateway settings updated!')" style="background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer;">Manage</button>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 24px; margin-bottom: 12px;">Your Library & Activity</h3>
+                <div class="account-sections">
+                    <div class="section-tile" onclick="alert('Opening Liked Videos...')">
+                        <div class="tile-icon">❤️</div>
+                        <div class="tile-info"><h4>Liked Videos</h4><p>384 videos</p></div>
+                    </div>
+                    <div class="section-tile" onclick="alert('Opening Saved Videos...')">
+                        <div class="tile-icon">📌</div>
+                        <div class="tile-info"><h4>Saved Videos</h4><p>42 playlists</p></div>
+                    </div>
+                    <div class="section-tile" onclick="alert('Opening Watch Later...')">
+                        <div class="tile-icon">⏰</div>
+                        <div class="tile-info"><h4>Watch Later</h4><p>12 videos queued</p></div>
+                    </div>
+                    <div class="section-tile" onclick="alert('Opening Downloads...')">
+                        <div class="tile-icon">📥</div>
+                        <div class="tile-info"><h4>Downloads</h4><p>8 available offline</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal">
+        <div class="yt-upload-header">
+            <button onclick="closeUploadModal()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">✕</button>
+            <span style="font-size: 14px; font-weight: 700; color: #f59e0b;">🎵 Add sound</span>
+            <span style="font-size: 20px; cursor: pointer;" onclick="alert('Studio camera settings flipped!')">✨</span>
+        </div>
+        <div class="yt-upload-body" onclick="document.getElementById('modalFileInput').click()">
+            <input type="file" id="modalFileInput" style="display: none;" accept="video/*" onchange="handleModalFileSelected(this)">
+            <p style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">Tap to pick or record video</p>
+            <p style="font-size: 12px; color: #94a3b8;">Supports Shorts, Reels, Long-form</p>
+            <div class="record-ring">
+                <div class="record-inner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navbar -->
+    <nav>
+        <div class="nav-inner">
+            <button class="nav-btn active" onclick="switchTab('home', event)" data-tab="home">
+                <span>🏠</span> Home
+            </button>
+            <button class="nav-btn" onclick="switchTab('reels', event)" data-tab="reels">
+                <span>⚡</span> Reels
+            </button>
+            <button class="nav-upload-center" onclick="openUploadModal()" title="Creator Upload">+</button>
+            <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat">
+                <span>💬</span> G-Chat
+            </button>
+            <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio">
+                <span>👤</span> Studio
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        function switchTab(tabId, event) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            const targetBtn = document.querySelector(`[data-tab="${tabId}"]`);
+            if(targetBtn) targetBtn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterCategory(category, btn) {
+            document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.video-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function switchStudioPane(paneId, btn) {
+            document.querySelectorAll('.studio-pane').forEach(el => el.classList.remove('active'));
+            document.getElementById('pane-' + paneId).classList.add('active');
+            document.querySelectorAll('.studio-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function selectChat(contactName) {
+            document.getElementById('activeChatTitle').innerText = "Chat with " + contactName;
+            document.getElementById('chatMessages').innerHTML = `
+                <div class="message received">"Hey Nandish, let's coordinate the next drop."</div>
+                <div class="message sent">"Got it! Publishing directly to GoldenNest now."</div>
+            `;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if(!text) return;
+            
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML += `<div class="message sent">${text}</div>`;
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function openUploadModal() {
+            document.getElementById('uploadModal').classList.add('active');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.remove('active');
+        }
+
+        function handleModalFileSelected(input) {
+            if (input.files && input.files[0]) {
+                alert("Success! '" + input.files[0].name + "' uploaded with 0% commission!");
+                closeUploadModal();
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) alert("Searching GoldenNest for: '" + query + "'");
+        }
+    </script>
+</body>
+</html>
