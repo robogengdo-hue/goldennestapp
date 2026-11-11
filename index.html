@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoldenNest - Creator-First Video Ecosystem</title>
     <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="manifest.json">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; }
-        body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; }
-        header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; transition: background 0.2s, color 0.2s; }
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+        .dark-mode {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+        body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+        header { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-color); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; flex-shrink: 0; }
         .brand-logo { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #fbbf24); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 20px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
         .brand-title h1 { font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #d97706, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .brand-title span { font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; color: #94a3b8; }
+        .brand-title span { font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); }
         
-        .search-box { display: flex; align-items: center; flex: 1; max-width: 480px; background: #f1f5f9; border-radius: 9999px; padding: 6px 16px; border: 1px solid transparent; transition: all 0.2s; }
-        .search-box:focus-within { background: white; border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1); }
-        .search-box input { width: 100%; border: none; background: transparent; outline: none; font-size: 14px; color: #0f172a; }
-        .search-btn { background: none; border: none; cursor: pointer; font-size: 16px; color: #64748b; }
+        .search-box { display: flex; align-items: center; flex: 1; max-width: 480px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 9999px; padding: 6px 16px; transition: all 0.2s; }
+        .search-box:focus-within { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1); }
+        .search-box input { width: 100%; border: none; background: transparent; outline: none; font-size: 14px; color: var(--text-main); }
+        .search-btn { background: none; border: none; cursor: pointer; font-size: 16px; color: var(--text-muted); }
+
+        .theme-toggle { background: var(--bg-card); border: 1px solid var(--border-color); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; }
 
         main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px 96px 16px; }
         .tab-content { display: none; }
@@ -26,59 +45,59 @@
 
         /* Category Filter Pills */
         .category-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
-        .pill-btn { background: #f1f5f9; border: none; padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: #64748b; cursor: pointer; white-space: nowrap; }
-        .pill-btn.active { background: #0f172a; color: white; }
+        .pill-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
+        .pill-btn.active { background: #f59e0b; color: white; border-color: #f59e0b; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-        .video-card { background: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .video-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .thumbnail { position: relative; aspect-ratio: 16/9; background: #0f172a; display: flex; align-items: center; justify-content: center; }
         .play-btn { width: 48px; height: 48px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
         .video-info { padding: 16px; display: flex; gap: 12px; }
         .avatar { width: 40px; height: 40px; border-radius: 50%; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
-        .video-details h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .video-details p { font-size: 12px; color: #64748b; }
+        .video-details h3 { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .video-details p { font-size: 12px; color: var(--text-muted); }
         
         /* Studio Dashboard */
-        .studio-box { max-width: 950px; margin: 0 auto; background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
-        .account-card { display: flex; align-items: center; justify-content: space-between; background: #fffdf4; border: 1px solid #fde68a; border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+        .studio-box { max-width: 950px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
+        .account-card { display: flex; align-items: center; justify-content: space-between; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
         .account-info { display: flex; align-items: center; gap: 12px; }
         .account-avatar { width: 48px; height: 48px; border-radius: 50%; background: #f59e0b; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         
-        .studio-tabs { display: flex; gap: 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 20px; }
-        .studio-tab-btn { background: #f1f5f9; border: none; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; color: #64748b; cursor: pointer; }
-        .studio-tab-btn.active { background: #f59e0b; color: white; }
+        .studio-tabs { display: flex; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px; }
+        .studio-tab-btn { background: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+        .studio-tab-btn.active { background: #f59e0b; color: white; border-color: #f59e0b; }
         .studio-pane { display: none; }
         .studio-pane.active { display: block; }
 
         .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
-        .metric-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; }
-        .metric-card h5 { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 6px; }
-        .metric-card .value { font-size: 20px; font-weight: 800; color: #0f172a; }
+        .metric-card { background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; }
+        .metric-card h5 { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 6px; }
+        .metric-card .value { font-size: 20px; font-weight: 800; color: var(--text-main); }
         .metric-card .trend { font-size: 11px; color: #059669; font-weight: 700; margin-top: 4px; }
 
         .content-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-        .content-table th { text-align: left; font-size: 11px; text-transform: uppercase; color: #64748b; padding: 10px; border-bottom: 1px solid #e2e8f0; }
-        .content-table td { padding: 12px 10px; font-size: 13px; border-bottom: 1px solid #f1f5f9; color: #334155; }
+        .content-table th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--text-muted); padding: 10px; border-bottom: 1px solid var(--border-color); }
+        .content-table td { padding: 12px 10px; font-size: 13px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
 
         .account-sections { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; }
-        .section-tile { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; }
-        .section-tile:hover { background: #fffdf4; border-color: #f59e0b; }
+        .section-tile { background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; }
+        .section-tile:hover { border-color: #f59e0b; }
         .tile-icon { width: 36px; height: 36px; border-radius: 10px; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; }
-        .tile-info h4 { font-size: 13px; font-weight: 700; color: #0f172a; }
-        .tile-info p { font-size: 11px; color: #64748b; }
+        .tile-info h4 { font-size: 13px; font-weight: 700; color: var(--text-main); }
+        .tile-info p { font-size: 11px; color: var(--text-muted); }
 
         /* G-Chat Messaging Interface */
-        .chat-container { display: grid; grid-template-columns: 280px 1fr; background: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .chat-sidebar { border-right: 1px solid #e2e8f0; background: #f8fafc; overflow-y: auto; }
-        .chat-contact { padding: 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; display: flex; gap: 12px; align-items: center; transition: background 0.2s; }
-        .chat-contact:hover, .chat-contact.active { background: #fffdf4; }
+        .chat-container { display: grid; grid-template-columns: 280px 1fr; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; height: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .chat-sidebar { border-right: 1px solid var(--border-color); background: var(--bg-main); overflow-y: auto; }
+        .chat-contact { padding: 16px; border-bottom: 1px solid var(--border-color); cursor: pointer; display: flex; gap: 12px; align-items: center; transition: background 0.2s; }
+        .chat-contact:hover, .chat-contact.active { background: var(--bg-card); }
         .chat-pane { display: flex; flex-direction: column; height: 100%; }
-        .chat-messages { flex: 1; padding: 16px; overflow-y: auto; background: #fafafa; display: flex; flex-direction: column; gap: 12px; }
+        .chat-messages { flex: 1; padding: 16px; overflow-y: auto; background: var(--bg-main); display: flex; flex-direction: column; gap: 12px; }
         .message { max-width: 70%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.4; }
-        .message.received { background: white; border: 1px solid #e2e8f0; align-self: flex-start; color: #0f172a; }
+        .message.received { background: var(--bg-card); border: 1px solid var(--border-color); align-self: flex-start; color: var(--text-main); }
         .message.sent { background: #f59e0b; color: white; align-self: flex-end; }
-        .chat-input-area { padding: 12px 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; background: white; }
-        .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 9999px; outline: none; font-size: 13px; }
+        .chat-input-area { padding: 12px 16px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; background: var(--bg-card); }
+        .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; font-size: 13px; }
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
 
         /* Upload Modal */
@@ -91,9 +110,9 @@
         .record-inner { width: 56px; height: 56px; background: #ef4444; border-radius: 50%; }
 
         /* Bottom Navbar */
-        nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-top: 1px solid #e2e8f0; z-index: 50; }
+        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 50; }
         .nav-inner { max-width: 520px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-around; }
-        .nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; color: #94a3b8; font-size: 11px; font-weight: 700; }
+        .nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; color: var(--text-muted); font-size: 11px; font-weight: 700; }
         .nav-btn.active { color: #d97706; }
         .nav-upload-center { width: 40px; height: 40px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); transition: transform 0.2s; }
         .nav-upload-center:hover { transform: scale(1.08); }
@@ -121,7 +140,7 @@
                 <button class="search-btn" onclick="performSearch()">🔍</button>
             </div>
             
-            <div style="width: 40px;"></div>
+            <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">🌙</button>
         </div>
     </header>
 
@@ -195,28 +214,28 @@
             </div>
         </div>
 
-        <!-- G-Chat Tab (Mutual Messaging) -->
+        <!-- G-Chat Tab (Mutual Messaging with Persistence) -->
         <div id="tab-chat" class="tab-content">
             <div class="chat-container">
                 <div class="chat-sidebar">
-                    <div style="padding: 16px; border-bottom: 1px solid #e2e8f0; font-weight: 800; font-size: 14px;">G-Chat (Mutual Only)</div>
+                    <div style="padding: 16px; border-bottom: 1px solid var(--border-color); font-weight: 800; font-size: 14px;">G-Chat (Mutual Only)</div>
                     <div class="chat-contact active" onclick="selectChat('Mr. Psycho')">
                         <div class="avatar" style="background: #1e293b; color: #f59e0b; width: 36px; height: 36px; font-size: 12px;">MP</div>
                         <div>
                             <h4 style="font-size: 13px; font-weight: 700;">Mr. Psycho</h4>
-                            <p style="font-size: 11px; color: #64748b;">Let's sync up on the teaser...</p>
+                            <p style="font-size: 11px; color: var(--text-muted);">Let's sync up on the teaser...</p>
                         </div>
                     </div>
                     <div class="chat-contact" onclick="selectChat('Robogen Team')">
                         <div class="avatar" style="width: 36px; height: 36px; font-size: 12px;">RG</div>
                         <div>
                             <h4 style="font-size: 13px; font-weight: 700;">Robogen Team</h4>
-                            <p style="font-size: 11px; color: #64748b;">Humanoid robot event ready.</p>
+                            <p style="font-size: 11px; color: var(--text-muted);">Humanoid robot event ready.</p>
                         </div>
                     </div>
                 </div>
                 <div class="chat-pane">
-                    <div style="padding: 16px; border-bottom: 1px solid #e2e8f0; font-weight: 700; font-size: 14px;" id="activeChatTitle">Chat with Mr. Psycho</div>
+                    <div style="padding: 16px; border-bottom: 1px solid var(--border-color); font-weight: 700; font-size: 14px;" id="activeChatTitle">Chat with Mr. Psycho</div>
                     <div class="chat-messages" id="chatMessages">
                         <div class="message received">"Let's sync up on the teaser release schedule for The Unmasking Project."</div>
                         <div class="message sent">"Ready when you are. Zero-commission distribution is locked in."</div>
@@ -236,216 +255,8 @@
                     <div class="account-info">
                         <div class="account-avatar">N</div>
                         <div>
-                            <h4 style="font-size: 14px; font-weight: 800; color: #0f172a;">Nandish (GoldenNest Studio)</h4>
+                            <h4 style="font-size: 14px; font-weight: 800;">Nandish (GoldenNest Studio)</h4>
                             <p style="font-size: 11px; color: #d97706; font-weight: 700;">Verified Creator • 0% Commission Tier</p>
                         </div>
                     </div>
-                    <div style="text-align: right;">
-                        <span style="font-size: 10px; color: #64748b; display: block; font-weight: 600;">DIRECT PAYOUT</span>
-                        <span style="font-size: 13px; font-weight: 800; color: #059669;">Active (100% Share)</span>
-                    </div>
-                </div>
-
-                <div class="studio-tabs">
-                    <button class="studio-tab-btn active" onclick="switchStudioPane('analytics', this)">Analytics</button>
-                    <button class="studio-tab-btn" onclick="switchStudioPane('content', this)">Content Manager</button>
-                    <button class="studio-tab-btn" onclick="switchStudioPane('monetization', this)">Monetization</button>
-                </div>
-
-                <div id="pane-analytics" class="studio-pane active">
-                    <div class="analytics-grid">
-                        <div class="metric-card">
-                            <h5>Channel Views</h5>
-                            <div class="value">66.4K</div>
-                            <div class="trend">↑ +18.2% this week</div>
-                        </div>
-                        <div class="metric-card">
-                            <h5>Watch Time (Hours)</h5>
-                            <div class="value">1,420 hrs</div>
-                            <div class="trend">↑ +12.4% this week</div>
-                        </div>
-                        <div class="metric-card">
-                            <h5>Subscribers</h5>
-                            <div class="value">8,450</div>
-                            <div class="trend">↑ +340 new subs</div>
-                        </div>
-                        <div class="metric-card">
-                            <h5>Est. Zero-Commission Payout</h5>
-                            <div class="value">₹48,200</div>
-                            <div class="trend">100% Creator Share</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="pane-content" class="studio-pane">
-                    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Channel Content</h3>
-                    <table class="content-table">
-                        <thead>
-                            <tr>
-                                <th>Video Title</th>
-                                <th>Visibility</th>
-                                <th>Views</th>
-                                <th>Comments</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Building GoldenNest: The Zero-Commission Creator Economy</td>
-                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
-                                <td>12.4K</td>
-                                <td>142</td>
-                            </tr>
-                            <tr>
-                                <td>Inside The Unmasking Project: Cinematic Teasers</td>
-                                <td><span style="color: #059669; font-weight: 700;">Public</span></td>
-                                <td>45.1K</td>
-                                <td>384</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="pane-monetization" class="studio-pane">
-                    <h3 style="font-size: 14px; font-weight: 800; margin-bottom: 8px;">Zero-Commission Payout Hub</h3>
-                    <p style="font-size: 12px; color: #64748b; margin-bottom: 16px;">GoldenNest takes 0% commission. You receive 100% of your earnings directly.</p>
-                    <div style="background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <h4 style="font-size: 13px; font-weight: 700;">Connected Gateway</h4>
-                            <p style="font-size: 11px; color: #64748b;">Status: Verified & Active</p>
-                        </div>
-                        <button onclick="alert('Gateway settings updated!')" style="background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer;">Manage</button>
-                    </div>
-                </div>
-
-                <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-top: 24px; margin-bottom: 12px;">Your Library & Activity</h3>
-                <div class="account-sections">
-                    <div class="section-tile" onclick="alert('Opening Liked Videos...')">
-                        <div class="tile-icon">❤️</div>
-                        <div class="tile-info"><h4>Liked Videos</h4><p>384 videos</p></div>
-                    </div>
-                    <div class="section-tile" onclick="alert('Opening Saved Videos...')">
-                        <div class="tile-icon">📌</div>
-                        <div class="tile-info"><h4>Saved Videos</h4><p>42 playlists</p></div>
-                    </div>
-                    <div class="section-tile" onclick="alert('Opening Watch Later...')">
-                        <div class="tile-icon">⏰</div>
-                        <div class="tile-info"><h4>Watch Later</h4><p>12 videos queued</p></div>
-                    </div>
-                    <div class="section-tile" onclick="alert('Opening Downloads...')">
-                        <div class="tile-icon">📥</div>
-                        <div class="tile-info"><h4>Downloads</h4><p>8 available offline</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Upload Modal -->
-    <div id="uploadModal">
-        <div class="yt-upload-header">
-            <button onclick="closeUploadModal()" style="background: none; border: none; color: white; font-size: 24px; cursor: pointer;">✕</button>
-            <span style="font-size: 14px; font-weight: 700; color: #f59e0b;">🎵 Add sound</span>
-            <span style="font-size: 20px; cursor: pointer;" onclick="alert('Studio camera settings flipped!')">✨</span>
-        </div>
-        <div class="yt-upload-body" onclick="document.getElementById('modalFileInput').click()">
-            <input type="file" id="modalFileInput" style="display: none;" accept="video/*" onchange="handleModalFileSelected(this)">
-            <p style="font-size: 16px; font-weight: 700; margin-bottom: 8px;">Tap to pick or record video</p>
-            <p style="font-size: 12px; color: #94a3b8;">Supports Shorts, Reels, Long-form</p>
-            <div class="record-ring">
-                <div class="record-inner"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bottom Navbar -->
-    <nav>
-        <div class="nav-inner">
-            <button class="nav-btn active" onclick="switchTab('home', event)" data-tab="home">
-                <span>🏠</span> Home
-            </button>
-            <button class="nav-btn" onclick="switchTab('reels', event)" data-tab="reels">
-                <span>⚡</span> Reels
-            </button>
-            <button class="nav-upload-center" onclick="openUploadModal()" title="Creator Upload">+</button>
-            <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat">
-                <span>💬</span> G-Chat
-            </button>
-            <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio">
-                <span>👤</span> Studio
-            </button>
-        </div>
-    </nav>
-
-    <script>
-        function switchTab(tabId, event) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            const targetBtn = document.querySelector(`[data-tab="${tabId}"]`);
-            if(targetBtn) targetBtn.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filterCategory(category, btn) {
-            document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const cards = document.querySelectorAll('.video-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        function switchStudioPane(paneId, btn) {
-            document.querySelectorAll('.studio-pane').forEach(el => el.classList.remove('active'));
-            document.getElementById('pane-' + paneId).classList.add('active');
-            document.querySelectorAll('.studio-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        function selectChat(contactName) {
-            document.getElementById('activeChatTitle').innerText = "Chat with " + contactName;
-            document.getElementById('chatMessages').innerHTML = `
-                <div class="message received">"Hey Nandish, let's coordinate the next drop."</div>
-                <div class="message sent">"Got it! Publishing directly to GoldenNest now."</div>
-            `;
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if(!text) return;
-            
-            const chatMessages = document.getElementById('chatMessages');
-            chatMessages.innerHTML += `<div class="message sent">${text}</div>`;
-            input.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function openUploadModal() {
-            document.getElementById('uploadModal').classList.add('active');
-        }
-
-        function closeUploadModal() {
-            document.getElementById('uploadModal').classList.remove('active');
-        }
-
-        function handleModalFileSelected(input) {
-            if (input.files && input.files[0]) {
-                alert("Success! '" + input.files[0].name + "' uploaded with 0% commission!");
-                closeUploadModal();
-            }
-        }
-
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            if (query) alert("Searching GoldenNest for: '" + query + "'");
-        }
-    </script>
-</body>
-</html>
+                    <di
