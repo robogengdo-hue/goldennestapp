@@ -77,7 +77,6 @@
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
         
         #uploadModal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 100; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
-        #uploadModal.active { display: flex; }
         
         .yt-studio-upload-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; width: 100%; max-width: 640px; padding: 24px; color: var(--text-main); }
         .yt-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px; }
@@ -111,9 +110,7 @@
                 <button class="icon-btn" onclick="toggleDarkMode()">🌙</button>
             </div>
         </div>
-    </header>
-
-    <main>
+    </header><main>
         <div id="tab-home" class="tab-content active">
             <div class="category-pills">
                 <button class="pill-btn active" onclick="filterCategory('all', this)">All Feeds</button>
@@ -197,9 +194,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div id="tab-chat" class="tab-content">
+        </div><div id="tab-chat" class="tab-content">
             <div class="chat-container">
                 <div class="chat-sidebar">
                     <div style="padding: 16px; border-bottom: 1px solid var(--border-color); font-weight: 800; font-size: 14px;">G-Chat (Mutual Only)</div>
@@ -223,7 +218,7 @@
                     <div class="chat-messages" id="chatMessages">
                         <div class="message received">"Let's sync up on the teaser release schedule for The Unmasking Project."</div>
                         <div class="message sent">"Ready when you are. Zero-commission distribution is locked in."</div>
-                        </div>
+                    </div>
                     <div class="chat-input-area">
                         <input type="text" id="chatInput" placeholder="Type a secure mutual message...">
                         <button onclick="sendMessage()">Send</button>
@@ -276,7 +271,9 @@
                 </div>
             </div>
         </div>
-    </main><div id="uploadModal">
+    </main>
+
+    <div id="uploadModal" style="display: none;">
         <div class="yt-studio-upload-box">
             <div class="yt-modal-header">
                 <h3 style="font-size: 16px; font-weight: 800;">Upload videos to GoldenNest</h3>
@@ -315,9 +312,7 @@
             <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat"><span>💬</span> G-Chat</button>
             <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio"><span>👤</span> Studio</button>
         </div>
-    </nav>
-
-    <script>
+    </nav><script>
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('goldennest_dark') === 'true') document.getElementById('htmlRoot').classList.add('dark-mode');
             const savedChat = localStorage.getItem('goldennest_chat');
@@ -379,8 +374,8 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
             localStorage.setItem('goldennest_chat', chatMessages.innerHTML);
         }
-        function openUploadModal() { document.getElementById('uploadModal').classList.add('active'); }
-        function closeUploadModal() { document.getElementById('uploadModal').classList.remove('active'); }
+        function openUploadModal() { document.getElementById('uploadModal').style.display = 'flex'; }
+        function closeUploadModal() { document.getElementById('uploadModal').style.display = 'none'; }
         function handleModalFileSelected(input) {
             if (input.files && input.files[0]) {
                 const fileName = input.files[0].name;
