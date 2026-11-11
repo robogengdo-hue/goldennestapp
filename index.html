@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenNest - Creator-First Video Ecosystem</title>
+    <meta name="theme-color" content="#D4AF37">
+    <link rel="manifest" href="manifest.json">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-400 flex items-center justify-center shadow-md shadow-amber-500/20 text-white font-extrabold text-xl">
+                    G
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-amber-600 to-yellow-500 bg-clip-text text-transparent">GoldenNest</h1>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400">G-Nest Creator Studio</span>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="hidden md:flex items-center flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" placeholder="Search creators, long-form, reels..." class="w-full pl-10 pr-4 py-2 bg-slate-100 border border-transparent rounded-full text-sm focus:outline-none focus:bg-white focus:border-amber-500 transition-all">
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-3">
+                <button onclick="switchTab('studio')" class="hidden sm:flex items-center space-x-2 px-4 py-2 rounded-full bg-amber-500 text-white font-semibold text-sm shadow-sm hover:bg-amber-600 transition">
+                    <i data-lucide="upload" class="w-4 h-4"></i>
+                    <span>Creator Upload</span>
+                </button>
+                <button onclick="installPWA()" id="installBtn" class="flex items-center space-x-2 px-3 py-2 rounded-full border border-amber-500 text-amber-600 font-semibold text-sm hover:bg-amber-50 transition">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Get App</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6 pb-24">
+        
+        <!-- Tab 1: Home Feed (Long-Form Library) -->
+        <div id="tab-home" class="tab-content space-y-6">
+            <!-- Category Pills -->
+            <div class="flex space-x-2 overflow-x-auto hide-scrollbar pb-2">
+                <button class="px-4 py-1.5 rounded-full bg-slate-900 text-white text-xs font-semibold whitespace-nowrap">All Feeds</button>
+                <button class="px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold whitespace-nowrap transition">Podcasts</button>
+                <button class="px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold whitespace-nowrap transition">Cinematic</button>
+                <button class="px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold whitespace-nowrap transition">Vlogs</button>
+                <button class="px-4 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold whitespace-nowrap transition">Tech & AI</button>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="videoGrid">
+                <!-- Sample Video Card 1 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="relative aspect-video bg-slate-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">14:20</span>
+                        <button class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                            <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                        </button>
+                    </div>
+                    <div class="p-4 flex space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 flex-shrink-0">GN</div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900 line-clamp-2">Building GoldenNest: The Zero-Commission Creator Economy</h3>
+                            <p class="text-xs text-slate-500 mt-1">GoldenNest Official • 12.4K views • 2 days ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Video Card 2 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="relative aspect-video bg-slate-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">08:45</span>
+                        <button class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                            <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                        </button>
+                    </div>
+                    <div class="p-4 flex space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 flex-shrink-0">MP</div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900 line-clamp-2">Inside The Unmasking Project: Cinematic Teasers & Cast Selection</h3>
+                            <p class="text-xs text-slate-500 mt-1">Mr. Psycho • 45.1K views • 1 week ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Video Card 3 -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition group">
+                    <div class="relative aspect-video bg-slate-900 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <span class="absolute bottom-3 right-3 bg-black/80 text-white text-[10px] font-bold px-2 py-0.5 rounded">22:10</span>
+                        <button class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                            <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                        </button>
+                    </div>
+                    <div class="p-4 flex space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center font-bold text-amber-600 flex-shrink-0">RG</div>
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900 line-clamp-2">Robogen Robotics Workshop: Humanoid AI & School Innovation</h3>
+                            <p class="text-xs text-slate-500 mt-1">Robogen Lab • 8.9K views • 3 days ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Reels Feed (Vertical Short Reels) -->
+        <div id="tab-reels" class="tab-content hidden max-w-sm mx-auto space-y-4">
+            <div class="relative bg-slate-900 rounded-3xl aspect-[9/16] overflow-hidden shadow-xl flex flex-col justify-end p-6 text-white">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80"></div>
+                
+                <!-- Reel Action Sidebar -->
+                <div class="absolute right-4 bottom-20 flex flex-col items-center space-y-4">
+                    <button class="w-11 h-11 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-amber-500 transition">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                    </button>
+                    <span class="text-xs font-bold">14.2K</span>
+                    
+                    <button class="w-11 h-11 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-amber-500 transition">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    </button>
+                    <span class="text-xs font-bold">384</span>
+
+                    <button class="w-11 h-11 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center hover:bg-amber-500 transition">
+                        <i data-lucide="share-2" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Reel Details -->
+                <div class="relative z-10 space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center font-bold text-xs">GN</div>
+                        <span class="font-bold text-sm">@goldennest_official</span>
+                        <button class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold">Follow</button>
+                    </div>
+                    <p class="text-xs text-slate-200 line-clamp-2">Sneak peek into the G-Nest creator payout dashboard and direct mutual messaging system! 🚀 #GoldenNest</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: G-Chat (Mutual Messaging) -->
+        <div id="tab-chat" class="tab-content hidden max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+                <div>
+                    <h2 class="font-extrabold text-base text-slate-900">G-Chat Hub</h2>
+                    <p class="text-xs text-slate-500">Secure messaging unlocked exclusively for mutual followers.</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold">Mutual Only</span>
+            </div>
+            <div class="p-6 divide-y divide-slate-100">
+                <div class="py-3 flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-2 rounded-xl transition">
+                    <div class="w-10 h-10 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center">MP</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-slate-900">Mr. Psycho (The Unmasking Project)</h4>
+                        <p class="text-xs text-slate-500">"Let's sync up on the teaser release schedule..."</p>
+                    </div>
+                    <span class="text-[10px] text-slate-400">10m ago</span>
+                </div>
+                <div class="py-3 flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-2 rounded-xl transition">
+                    <div class="w-10 h-10 rounded-full bg-yellow-500 text-white font-bold flex items-center justify-center">RG</div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm text-slate-900">Robogen Team</h4>
+                        <p class="text-xs text-slate-500">"Humanoid robot event rental confirmed for next week."</p>
+                    </div>
+                    <span class="text-[10px] text-slate-400">1h ago</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: G-Nest Creator Studio -->
+        <div id="tab-studio" class="tab-content hidden max-w-3xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+            <div>
+                <h2 class="font-extrabold text-xl text-slate-900">G-Nest Creator Studio</h2>
+                <p class="text-xs text-slate-500">Upload your videos or short reels with 0% platform commission splits.</p>
+            </div>
+            <div class="border-2 border-dashed border-slate-200 rounded-2xl p-8 text-center space-y-3 hover:border-amber-500 transition cursor-pointer">
+                <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto">
+                    <i data-lucide="upload-cloud" class="w-7 h-7"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm text-slate-900">Drag and drop video files to upload</h3>
+                    <p class="text-xs text-slate-400 mt-1">Supports MP4, MOV, WebM (Long-form or Vertical Reels)</p>
+                </div>
+                <button class="px-4 py-2 rounded-full bg-amber-500 text-white text-xs font-semibold shadow-sm hover:bg-amber-600 transition">Select File</button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Title</label>
+                    <input type="text" placeholder="Enter video title..." class="w-full px-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Category</label>
+                    <select class="w-full px-4 py-2 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-amber-500 bg-white">
+                        <option>Long-Form Video</option>
+                        <option>Vertical Short Reel</option>
+                        <option>Cinematic / Trailer</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="alert('Video successfully uploaded to G-Nest Studio!')" class="w-full py-3 rounded-xl bg-amber-500 text-white font-bold text-sm shadow-md hover:bg-amber-600 transition">Publish to GoldenNest</button>
+        </div>
+
+    </main>
+
+    <!-- Bottom Mobile Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-slate-200 z-50">
+        <div class="max-w-md mx-auto px-6 h-16 flex items-center justify-between">
+            <button onclick="switchTab('home')" class="nav-btn flex flex-col items-center text-amber-600 space-y-1" data-tab="home">
+                <i data-lucide="home" class="w-5 h-5"></i>
+                <span class="text-[10px] font-bold">Home</span>
+            </button>
+            <button onclick="switchTab('reels')" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 space-y-1" data-tab="reels">
+                <i data-lucide="film" class="w-5 h-5"></i>
+                <span class="text-[10px] font-bold">Reels</span>
+            </button>
+            <button onclick="switchTab('chat')" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 space-y-1" data-tab="chat">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span class="text-[10px] font-bold">G-Chat</span>
+            </button>
+            <button onclick="switchTab('studio')" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 space-y-1" data-tab="studio">
+                <i data-lucide="video" class="w-5 h-5"></i>
+                <span class="text-[10px] font-bold">Studio</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Script Logic -->
+    <script>
+        lucide.createIcons();
+
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Show selected tab
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Update bottom nav colors
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.dataset.tab === tabId) {
+                    btn.classList.remove('text-slate-400');
+                    btn.classList.add('text-amber-600');
+                } else {
+                    btn.classList.remove('text-amber-600');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function installPWA() {
+            alert("GoldenNest PWA Ready! Tap your browser menu (three dots) and select 'Add to Home Screen' or 'Install App' to launch it instantly.");
+        }
+    </script>
+</body>
+</html>
