@@ -9,14 +9,14 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', Arial, sans-serif; }
         body { background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; }
         header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
         .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; flex-shrink: 0; }
         .brand-logo { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #fbbf24); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 20px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
         .brand-title h1 { font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #d97706, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .brand-title span { font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; color: #94a3b8; }
         
-        /* Search Bar */
-        .search-box { display: flex; align-items: center; flex: 1; max-width: 450px; background: #f1f5f9; border-radius: 9999px; padding: 6px 16px; border: 1px solid transparent; transition: all 0.2s; }
+        /* Centered Search Bar */
+        .search-box { display: flex; align-items: center; flex: 1; max-width: 480px; background: #f1f5f9; border-radius: 9999px; padding: 6px 16px; border: 1px solid transparent; transition: all 0.2s; }
         .search-box:focus-within { background: white; border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1); }
         .search-box input { width: 100%; border: none; background: transparent; outline: none; font-size: 14px; color: #0f172a; }
         .search-btn { background: none; border: none; cursor: pointer; font-size: 16px; color: #64748b; }
@@ -39,7 +39,7 @@
         .account-info { display: flex; align-items: center; gap: 12px; }
         .account-avatar { width: 48px; height: 48px; border-radius: 50%; background: #f59e0b; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         
-        /* Account Sections Grid (Liked, Saved, Watch Later, Downloads) */
+        /* Account Sections Grid */
         .account-sections { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
         .section-tile { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: all 0.2s; }
         .section-tile:hover { background: #fffdf4; border-color: #f59e0b; }
@@ -56,12 +56,12 @@
         .btn-action { background: #f59e0b; color: white; border: none; padding: 10px 20px; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer; transition: background 0.2s; width: 100%; }
         .btn-action:hover { background: #d97706; }
 
-        /* Bottom Navbar with Centered Upload Button */
+        /* Bottom Navbar with Centered Upload Button beside Reels */
         nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-top: 1px solid #e2e8f0; z-index: 50; }
         .nav-inner { max-width: 520px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-around; }
         .nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; color: #94a3b8; font-size: 11px; font-weight: 700; }
         .nav-btn.active { color: #d97706; }
-        .nav-upload-center { width: 44px; height: 44px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 22px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); transition: transform 0.2s; }
+        .nav-upload-center { width: 40px; height: 40px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); transition: transform 0.2s; }
         .nav-upload-center:hover { transform: scale(1.08); }
 
         /* Reels */
@@ -82,11 +82,13 @@
                 </div>
             </div>
 
-            <!-- Search Bar & Button -->
+            <!-- Centered Search Bar -->
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search creators, long-form, reels...">
                 <button class="search-btn" onclick="performSearch()">🔍</button>
             </div>
+            
+            <div style="width: 40px;"></div> <!-- Spacer for perfect balance -->
         </div>
     </header>
 
@@ -182,7 +184,7 @@
                     </div>
                 </div>
 
-                <!-- YouTube-style Account Sections (Liked, Saved, Watch Later, Downloads) -->
+                <!-- YouTube-style Account Sections -->
                 <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Your Library & Activity</h3>
                 <div class="account-sections">
                     <div class="section-tile" onclick="alert('Opening Liked Videos...')">
@@ -192,7 +194,7 @@
                             <p>384 videos</p>
                         </div>
                     </div>
-                    <div class="section-tile" onclick="alert('Opening Saved Videos / Playlists...')">
+                    <div class="section-tile" onclick="alert('Opening Saved Videos...')">
                         <div class="tile-icon">📌</div>
                         <div class="tile-info">
                             <h4>Saved Videos</h4>
@@ -206,7 +208,7 @@
                             <p>12 videos queued</p>
                         </div>
                     </div>
-                    <div class="section-tile" onclick="alert('Opening Offline Downloads...')">
+                    <div class="section-tile" onclick="alert('Opening Downloads...')">
                         <div class="tile-icon">📥</div>
                         <div class="tile-info">
                             <h4>Downloads</h4>
@@ -243,7 +245,7 @@
         </div>
     </main>
 
-    <!-- Bottom Navbar with Centered Upload Button -->
+    <!-- Bottom Navbar with Upload Button right beside Reels -->
     <nav>
         <div class="nav-inner">
             <button class="nav-btn active" onclick="switchTab('home', event)" data-tab="home">
@@ -252,12 +254,12 @@
             <button class="nav-btn" onclick="switchTab('reels', event)" data-tab="reels">
                 <span>⚡</span> Reels
             </button>
-            <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat">
-                <span>💬</span> G-Chat
-            </button>
-            <!-- Centered Upload Button -->
+            <!-- Upload Button Placed Right Beside Reels -->
             <button class="nav-upload-center" onclick="switchTab('studio', event)" title="Creator Upload">
                 +
+            </button>
+            <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat">
+                <span>💬</span> G-Chat
             </button>
             <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio">
                 <span>👤</span> Studio
