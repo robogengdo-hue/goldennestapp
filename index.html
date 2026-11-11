@@ -90,7 +90,7 @@
         .nav-upload-center { width: 40px; height: 40px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     </style>
 </head>
-<body>
+<body id="htmlRoot">
     <header>
         <div class="nav-container">
             <div class="brand" onclick="switchTab('home', event)">
@@ -221,8 +221,7 @@
                     <div class="chat-messages" id="chatMessages">
                         <div class="message received">"Let's sync up on the teaser release schedule for The Unmasking Project."</div>
                         <div class="message sent">"Ready when you are. Zero-commission distribution is locked in."</div>
-                    </div>
-                    <div class="chat-input-area">
+                    </div><div class="chat-input-area">
                         <input type="text" id="chatInput" placeholder="Type a secure mutual message...">
                         <button onclick="sendMessage()">Send</button>
                     </div>
@@ -274,9 +273,7 @@
                 </div>
             </div>
         </div>
-    </main>
-
-    <div id="uploadModal">
+    </main><div id="uploadModal">
         <div class="yt-studio-upload-box">
             <div class="yt-modal-header">
                 <h3 style="font-size: 16px; font-weight: 800;">Upload videos to GoldenNest</h3>
@@ -344,9 +341,10 @@
         function switchTab(tabId, event) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById('watchView').classList.remove('active');
-            document.getElementById('tab-' + tabId).classList.add('active');
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.add('active');
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            const targetBtn = document.querySelector(`[data-tab="${tabId}"]`);
+            const targetBtn = document.querySelector(`[onclick*="${tabId}"]`);
             if(targetBtn) targetBtn.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -409,4 +407,12 @@
             document.getElementById('contentTableBody').innerHTML += `<tr><td>${title} [${lang}]</td><td><span style="color: #059669; font-weight: 700;">${visibility}</span></td><td>0 views</td><td>0</td></tr>`;
             closeUploadModal();
             switchTab('studio');
-            switchStudioPane('content'
+            switchStudioPane('content', document.querySelectorAll('.studio-tab-btn')[1]);
+        }
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) alert("Searching GoldenNest for: '" + query + "'");
+        }
+    </script>
+</body>
+</html>
