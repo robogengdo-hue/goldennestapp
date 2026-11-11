@@ -28,8 +28,11 @@
         .video-details h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .video-details p { font-size: 12px; color: #64748b; }
         
-        /* Studio & Upload */
-        .studio-box { max-width: 700px; margin: 0 auto; background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        /* Studio & Account Profile */
+        .studio-box { max-width: 700px; margin: 0 auto; background: white; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
+        .account-card { display: flex; align-items: center; justify-content: space-between; background: #fffdf4; border: 1px solid #fde68a; border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+        .account-info { display: flex; align-items: center; gap: 12px; }
+        .account-avatar { width: 48px; height: 48px; border-radius: 50%; background: #f59e0b; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         .dropzone { border: 2px dashed #cbd5e1; border-radius: 16px; padding: 32px; text-align: center; cursor: pointer; transition: border-color 0.2s; margin-bottom: 20px; background: #fafafa; }
         .dropzone:hover { border-color: #f59e0b; background: #fffdf4; }
         .form-group { margin-bottom: 16px; }
@@ -53,7 +56,6 @@
 
     <header>
         <div class="nav-container">
-            <!-- Header Logo takes you strictly to Home Feed -->
             <div class="brand" onclick="switchTab('home', event)">
                 <div class="brand-logo">G</div>
                 <div class="brand-title">
@@ -61,8 +63,8 @@
                     <span>G-Nest Creator Studio</span>
                 </div>
             </div>
-            <!-- Top Upload Button takes you strictly to Studio Upload -->
-            <button class="btn-upload" onclick="switchTab('studio', event)">+ Creator Upload</button>
+            <!-- Renamed button to +Upload -->
+            <button class="btn-upload" onclick="switchTab('studio', event)">+Upload</button>
         </div>
     </header>
 
@@ -143,8 +145,23 @@
         <!-- Studio Tab -->
         <div id="tab-studio" class="tab-content">
             <div class="studio-box">
+                <!-- Creator Account & User Information Card -->
+                <div class="account-card">
+                    <div class="account-info">
+                        <div class="account-avatar">N</div>
+                        <div>
+                            <h4 style="font-size: 14px; font-weight: 800; color: #0f172a;">Nandish (GoldenNest Studio)</h4>
+                            <p style="font-size: 11px; color: #d97706; font-weight: 700;">Verified Creator • 0% Commission Tier</p>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-size: 10px; color: #64748b; display: block; font-weight: 600;">DIRECT PAYOUT</span>
+                        <span style="font-size: 13px; font-weight: 800; color: #059669;">Active (100% Share)</span>
+                    </div>
+                </div>
+
                 <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 4px;">G-Nest Creator Studio</h2>
-                <p style="font-size: 12px; color: #64748b; margin-bottom: 20px;">Upload videos or reels with 0% platform commission.</p>
+                <p style="font-size: 12px; color: #64748b; margin-bottom: 20px;">Upload long-form videos or vertical short reels directly.</p>
                 
                 <div class="dropzone" onclick="document.getElementById('videoFileInput').click()">
                     <input type="file" id="videoFileInput" style="display: none;" accept="video/*" onchange="handleFileSelected(this)">
