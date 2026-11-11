@@ -75,8 +75,10 @@
         .chat-input-area { padding: 12px 16px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; background: var(--bg-card); }
         .chat-input-area input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; }
         .chat-input-area button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
+        /* Upload modal hidden by default */
         #uploadModal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 100; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
-        #uploadModal.active { display: none; }
+        #uploadModal.active { display: flex; }
+        
         .yt-studio-upload-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; width: 100%; max-width: 640px; padding: 24px; color: var(--text-main); }
         .yt-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px; }
         .form-group-yt { margin-bottom: 16px; display: flex; flex-direction: column; gap: 6px; }
@@ -221,7 +223,8 @@
                     <div class="chat-messages" id="chatMessages">
                         <div class="message received">"Let's sync up on the teaser release schedule for The Unmasking Project."</div>
                         <div class="message sent">"Ready when you are. Zero-commission distribution is locked in."</div>
-                    </div><div class="chat-input-area">
+                    </div>
+                    <div class="chat-input-area">
                         <input type="text" id="chatInput" placeholder="Type a secure mutual message...">
                         <button onclick="sendMessage()">Send</button>
                     </div>
@@ -273,7 +276,8 @@
                 </div>
             </div>
         </div>
-    </main><div id="uploadModal">
+    </main>
+    <div id="uploadModal">
         <div class="yt-studio-upload-box">
             <div class="yt-modal-header">
                 <h3 style="font-size: 16px; font-weight: 800;">Upload videos to GoldenNest</h3>
