@@ -312,7 +312,8 @@
             <button class="nav-btn" onclick="switchTab('chat', event)" data-tab="chat"><span>💬</span> G-Chat</button>
             <button class="nav-btn" onclick="switchTab('studio', event)" data-tab="studio"><span>👤</span> Studio</button>
         </div>
-    </nav><script>
+    </nav>
+    <script>
         window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('goldennest_dark') === 'true') document.getElementById('htmlRoot').classList.add('dark-mode');
             const savedChat = localStorage.getItem('goldennest_chat');
