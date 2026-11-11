@@ -40,7 +40,7 @@
         .header-actions { display: flex; align-items: center; gap: 10px; }
         .icon-btn { background: var(--bg-card); border: 1px solid var(--border-color); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; position: relative; }
 
-        main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px 96px 16px; }
+        main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px 110px 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
@@ -129,8 +129,8 @@
         .yt-submit-btn { background: #f59e0b; color: white; border: none; padding: 12px 24px; border-radius: 9999px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; font-size: 14px; }
         .yt-submit-btn:hover { background: #d97706; }
 
-        /* Bottom Navbar */
-        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 50; }
+        /* Bottom Navbar - Fixed Permanently */
+        nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(8px); border-top: 1px solid var(--border-color); z-index: 99; }
         .nav-inner { max-width: 520px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-around; }
         .nav-btn { background: none; border: none; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; color: var(--text-muted); font-size: 11px; font-weight: 700; }
         .nav-btn.active { color: #d97706; }
@@ -214,7 +214,7 @@
         </div>
 
         <!-- Public Watch Page -->
-        <div id="watchView">
+        <div id="watchView" class="tab-content">
             <button onclick="closeWatchPage()" style="background: none; border: none; font-weight: 700; color: #f59e0b; cursor: pointer; margin-bottom: 16px; font-size: 14px;">← Back to Home Feed</button>
             <div class="watch-player">
                 <span id="watchPlayerTitle">Playing Video...</span>
@@ -245,4 +245,4 @@
             <div class="reels-scroll-container">
                 <div class="reel-card">
                     <div class="reel-sidebar">
-                        <button class="reel-action-btn" onclick="alert('Liked r
+                        <button class=
