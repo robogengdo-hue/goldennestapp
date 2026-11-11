@@ -26,30 +26,32 @@
         }
         body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
         header { position: sticky; top: 0; z-index: 50; background: var(--nav-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-color); }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 16px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
         .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; flex-shrink: 0; }
         .brand-logo { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #fbbf24); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 20px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
         .brand-title h1 { font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #d97706, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .brand-title span { font-size: 10px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); }
         
-        .search-box { display: flex; align-items: center; flex: 1; max-width: 480px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 9999px; padding: 6px 16px; transition: all 0.2s; }
+        .search-box { display: flex; align-items: center; flex: 1; max-width: 440px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 9999px; padding: 6px 16px; transition: all 0.2s; }
         .search-box:focus-within { border-color: #f59e0b; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1); }
         .search-box input { width: 100%; border: none; background: transparent; outline: none; font-size: 14px; color: var(--text-main); }
         .search-btn { background: none; border: none; cursor: pointer; font-size: 16px; color: var(--text-muted); }
 
-        .theme-toggle { background: var(--bg-card); border: 1px solid var(--border-color); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .icon-btn { background: var(--bg-card); border: 1px solid var(--border-color); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; position: relative; }
 
         main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px 96px 16px; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Category Filter Pills */
+        /* Category Filter Pills & Trending */
         .category-pills { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
         .pill-btn { background: var(--bg-card); border: 1px solid var(--border-color); padding: 6px 16px; border-radius: 9999px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; white-space: nowrap; }
         .pill-btn.active { background: #f59e0b; color: white; border-color: #f59e0b; }
 
         .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-        .video-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .video-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; }
+        .video-card:hover { transform: translateY(-2px); }
         .thumbnail { position: relative; aspect-ratio: 16/9; background: #0f172a; display: flex; align-items: center; justify-content: center; }
         .play-btn { width: 48px; height: 48px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
         .video-info { padding: 16px; display: flex; gap: 12px; }
@@ -57,6 +59,23 @@
         .video-details h3 { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .video-details p { font-size: 12px; color: var(--text-muted); }
         
+        /* Public Watch Page View */
+        #watchView { display: none; max-width: 900px; margin: 0 auto; }
+        #watchView.active { display: block; }
+        .watch-player { aspect-ratio: 16/9; background: #0f172a; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; margin-bottom: 16px; position: relative; }
+        .comments-section { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; margin-top: 24px; }
+        .comment-input-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .comment-input-box input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); border-radius: 9999px; outline: none; font-size: 13px; }
+        .comment-input-box button { background: #f59e0b; color: white; border: none; padding: 8px 18px; border-radius: 9999px; font-weight: 700; cursor: pointer; }
+        .comment-item { display: flex; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+
+        /* Immersive Vertical Reels Feed (Instagram Style) */
+        .reels-scroll-container { max-width: 380px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+        .reel-card { background: #0f172a; border-radius: 24px; aspect-ratio: 9/16; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .reel-sidebar { position: absolute; right: 16px; bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .reel-action-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; transition: transform 0.2s; }
+        .reel-action-btn:hover { transform: scale(1.1); }
+
         /* Studio Dashboard */
         .studio-box { max-width: 950px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
         .account-card { display: flex; align-items: center; justify-content: space-between; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
@@ -116,11 +135,6 @@
         .nav-btn.active { color: #d97706; }
         .nav-upload-center { width: 40px; height: 40px; border-radius: 50%; background: #f59e0b; color: white; border: none; font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); transition: transform 0.2s; }
         .nav-upload-center:hover { transform: scale(1.08); }
-
-        /* Reels */
-        .reel-container { max-width: 360px; margin: 0 auto; background: #0f172a; border-radius: 24px; aspect-ratio: 9/16; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .reel-sidebar { position: absolute; right: 16px; bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-        .reel-action-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.5); border: none; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; }
     </style>
 </head>
 <body>
@@ -140,7 +154,10 @@
                 <button class="search-btn" onclick="performSearch()">🔍</button>
             </div>
             
-            <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">🌙</button>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="alert('No new subscriber notifications.')" title="Notifications">🔔</button>
+                <button class="icon-btn" onclick="toggleDarkMode()" title="Toggle Dark/Light Mode">🌙</button>
+            </div>
         </div>
     </header>
 
@@ -156,9 +173,9 @@
             </div>
 
             <div class="video-grid" id="homeVideoGrid">
-                <div class="video-card" data-category="tech">
+                <div class="video-card" data-category="tech" onclick="openWatchPage('Building GoldenNest: The Zero-Commission Creator Economy', 'GoldenNest Official', '12.4K views')">
                     <div class="thumbnail">
-                        <button class="play-btn" onclick="alert('Playing long-form video stream...')">▶</button>
+                        <button class="play-btn">▶</button>
                     </div>
                     <div class="video-info">
                         <div class="avatar">GN</div>
@@ -168,9 +185,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="video-card" data-category="cinematic">
+                <div class="video-card" data-category="cinematic" onclick="openWatchPage('Inside The Unmasking Project: Cinematic Teasers & Mr. Psycho', 'Mr. Psycho', '45.1K views')">
                     <div class="thumbnail">
-                        <button class="play-btn" onclick="alert('Playing long-form video stream...')">▶</button>
+                        <button class="play-btn">▶</button>
                     </div>
                     <div class="video-info">
                         <div class="avatar" style="background: #1e293b; color: #f59e0b;">MP</div>
@@ -180,9 +197,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="video-card" data-category="tech">
+                <div class="video-card" data-category="tech" onclick="openWatchPage('Robogen Robotics Workshop: Humanoid AI Innovation', 'Robogen Lab', '8.9K views')">
                     <div class="thumbnail">
-                        <button class="play-btn" onclick="alert('Playing long-form video stream...')">▶</button>
+                        <button class="play-btn">▶</button>
                     </div>
                     <div class="video-info">
                         <div class="avatar">RG</div>
@@ -195,26 +212,71 @@
             </div>
         </div>
 
-        <!-- Reels Tab -->
-        <div id="tab-reels" class="tab-content">
-            <div class="reel-container">
-                <div class="reel-sidebar">
-                    <button class="reel-action-btn" onclick="alert('Liked reel!')">❤️</button>
-                    <span style="font-size: 12px; font-weight: bold;">14.2K</span>
-                    <button class="reel-action-btn" onclick="alert('Opening comments...')">💬</button>
-                    <span style="font-size: 12px; font-weight: bold;">384</span>
+        <!-- Public Watch Page (YouTube Style) -->
+        <div id="watchView">
+            <button onclick="closeWatchPage()" style="background: none; border: none; font-weight: 700; color: #f59e0b; cursor: pointer; margin-bottom: 16px; font-size: 14px;">← Back to Home Feed</button>
+            <div class="watch-player">
+                <span id="watchPlayerTitle">Playing Video...</span>
+            </div>
+            <h2 id="watchTitle" style="font-size: 18px; font-weight: 800; margin-bottom: 6px;">Video Title</h2>
+            <p id="watchMeta" style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Channel • Views</p>
+            
+            <!-- Public Comments Section -->
+            <div class="comments-section">
+                <h3 style="font-size: 15px; font-weight: 800; margin-bottom: 12px;">Public Comments</h3>
+                <div class="comment-input-box">
+                    <input type="text" id="commentInput" placeholder="Add a public comment...">
+                    <button onclick="postComment()">Comment</button>
                 </div>
-                <div style="position: relative; z-index: 10;">
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #1e293b; color: #f59e0b; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">MP</div>
-                        <span style="font-weight: 700; font-size: 14px;">@mr_psycho_official</span>
+                <div id="commentsList">
+                    <div class="comment-item">
+                        <div class="avatar" style="width: 32px; height: 32px; font-size: 12px;">U1</div>
+                        <div>
+                            <h4 style="font-size: 12px; font-weight: 700;">Alex Creator</h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">This zero-commission creator model is a game changer!</p>
+                        </div>
                     </div>
-                    <p style="font-size: 12px; color: #e2e8f0;">The unmasking begins. Are you ready for the truth? #TheUnmaskingProject</p>
                 </div>
             </div>
         </div>
 
-        <!-- G-Chat Tab (Mutual Messaging with Persistence) -->
+        <!-- Reels Tab (Instagram Style Endless Vertical Swipe) -->
+        <div id="tab-reels" class="tab-content">
+            <div class="reels-scroll-container">
+                <div class="reel-card">
+                    <div class="reel-sidebar">
+                        <button class="reel-action-btn" onclick="alert('Liked reel!')">❤️</button>
+                        <span style="font-size: 12px; font-weight: bold;">14.2K</span>
+                        <button class="reel-action-btn" onclick="alert('Opening comments drawer...')">💬</button>
+                        <span style="font-size: 12px; font-weight: bold;">384</span>
+                    </div>
+                    <div style="position: relative; z-index: 10;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: #1e293b; color: #f59e0b; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">MP</div>
+                            <span style="font-weight: 700; font-size: 14px;">@mr_psycho_official</span>
+                        </div>
+                        <p style="font-size: 12px; color: #e2e8f0;">The unmasking begins. Are you ready for the truth? #TheUnmaskingProject</p>
+                    </div>
+                </div>
+                <div class="reel-card" style="background: #1e293b;">
+                    <div class="reel-sidebar">
+                        <button class="reel-action-btn" onclick="alert('Liked reel!')">❤️</button>
+                        <span style="font-size: 12px; font-weight: bold;">28.5K</span>
+                        <button class="reel-action-btn" onclick="alert('Opening comments drawer...')">💬</button>
+                        <span style="font-size: 12px; font-weight: bold;">512</span>
+                    </div>
+                    <div style="position: relative; z-index: 10;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 32px; height: 32px; border-radius: 50%; background: #f59e0b; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">GN</div>
+                            <span style="font-weight: 700; font-size: 14px;">@goldennest_official</span>
+                        </div>
+                        <p style="font-size: 12px; color: #e2e8f0;">Zero commission creator payouts in action! Instant withdrawals. 🚀 #GoldenNest</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- G-Chat Tab (Mutual Messaging) -->
         <div id="tab-chat" class="tab-content">
             <div class="chat-container">
                 <div class="chat-sidebar">
@@ -376,7 +438,7 @@
         </div>
     </div>
 
-    <!-- Bottom Navbar (Ensured Visible) -->
+    <!-- Bottom Navbar -->
     <nav>
         <div class="nav-inner">
             <button class="nav-btn active" onclick="switchTab('home', event)" data-tab="home">
@@ -414,12 +476,44 @@
 
         function switchTab(tabId, event) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('watchView').classList.remove('active');
             document.getElementById('tab-' + tabId).classList.add('active');
 
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
             const targetBtn = document.querySelector(`[data-tab="${tabId}"]`);
             if(targetBtn) targetBtn.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openWatchPage(title, channel, views) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('watchView').classList.add('active');
+            document.getElementById('watchTitle').innerText = title;
+            document.getElementById('watchMeta').innerText = channel + " • " + views;
+            document.getElementById('watchPlayerTitle').innerText = "Now Playing: " + title;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeWatchPage() {
+            switchTab('home');
+        }
+
+        function postComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+            if(!text) return;
+            
+            const list = document.getElementById('commentsList');
+            list.innerHTML = `
+                <div class="comment-item">
+                    <div class="avatar" style="width: 32px; height: 32px; font-size: 12px; background: #f59e0b; color: white;">N</div>
+                    <div>
+                        <h4 style="font-size: 12px; font-weight: 700;">Nandish (Creator)</h4>
+                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">${text}</p>
+                    </div>
+                </div>
+            ` + list.innerHTML;
+            input.value = '';
         }
 
         function filterCategory(category, btn) {
