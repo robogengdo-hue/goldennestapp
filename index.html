@@ -53,6 +53,7 @@
 
     <header>
         <div class="nav-container">
+            <!-- Header Logo takes you strictly to Home Feed -->
             <div class="brand" onclick="switchTab('home', event)">
                 <div class="brand-logo">G</div>
                 <div class="brand-title">
@@ -60,6 +61,7 @@
                     <span>G-Nest Creator Studio</span>
                 </div>
             </div>
+            <!-- Top Upload Button takes you strictly to Studio Upload -->
             <button class="btn-upload" onclick="switchTab('studio', event)">+ Creator Upload</button>
         </div>
     </header>
@@ -193,7 +195,6 @@
                 btn.classList.remove('active');
             });
             
-            // Highlight matching nav button if triggered from navbar
             const targetBtn = document.querySelector(`[data-tab="${tabId}"]`);
             if(targetBtn) targetBtn.classList.add('active');
             
